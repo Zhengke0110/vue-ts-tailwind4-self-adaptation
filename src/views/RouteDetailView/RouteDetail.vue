@@ -114,74 +114,111 @@
             <i class="fas fa-calendar-alt mr-2 text-orange-500"></i>
             行程概览
           </h2>
-          <div class="mt-6 space-y-6 md:mt-4 md:space-y-4">
-            <div
-              v-for="(day, index) in routeData.itinerary"
-              :key="index"
-              class="transform transition-all duration-300 hover:translate-x-2"
-              :class="{ 'animate-fade-in-up': true }"
-              :style="{ animationDelay: `${index * 200}ms` }"
-            >
-              <h3 class="mb-2 text-base font-medium text-gray-900">
-                <div class="flex items-center">
-                  <span
-                    class="flex h-6 w-6 items-center justify-center rounded-full bg-orange-500 text-sm text-white"
+          <div class="mt-6 space-y-6 md:mt-4">
+            <div class="relative">
+              <!-- 时间轴线 -->
+              <div
+                class="absolute top-0 left-3 h-full w-0.5 bg-orange-200"
+              ></div>
+
+              <div
+                v-for="(day, index) in routeData.itinerary"
+                :key="index"
+                class="relative transform transition-all duration-300"
+                :class="{ 'animate-fade-in-up': true }"
+                :style="{ animationDelay: `${index * 200}ms` }"
+              >
+                <!-- 时间轴节点 -->
+                <div class="relative mb-8 ml-8 md:ml-12">
+                  <!-- 圆点装饰 -->
+                  <div
+                    class="absolute -left-[2.25rem] flex h-6 w-6 items-center justify-center rounded-full border-4 border-orange-200 bg-orange-500 text-xs font-bold text-white"
                   >
                     {{ index + 1 }}
-                  </span>
-                  <span class="ml-2">{{ day.title }}</span>
-                </div>
-                <p class="mt-1 text-sm text-gray-500">{{ day.description }}</p>
-              </h3>
-              <div class="space-y-6 pl-4 md:pl-8">
-                <div
-                  v-for="(spot, spotIndex) in day.spots"
-                  :key="spotIndex"
-                  class="group relative transform overflow-hidden rounded-lg border border-gray-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
-                  :class="{
-                    'md:flex md:items-start':
-                      deviceType.isTablet || deviceType.isDesktop,
-                  }"
-                >
-                  <!-- 添加景点图片 -->
-                  <div
-                    class="relative h-56 overflow-hidden md:h-32 md:w-48 lg:h-40 lg:w-64"
-                    :class="{
-                      'w-full': deviceType.isMobile,
-                    }"
-                  >
-                    <img
-                      :src="spot.image"
-                      :alt="spot.name"
-                      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div
-                      class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"
-                    ></div>
                   </div>
 
-                  <!-- 景点信息 -->
-                  <div class="flex-1 p-6 md:p-4">
-                    <div class="flex items-center justify-between">
-                      <h4 class="font-medium text-gray-900">{{ spot.name }}</h4>
-                      <span class="text-sm text-gray-500">{{
-                        spot.duration
-                      }}</span>
-                    </div>
-                    <p class="mt-2 text-sm text-gray-500">
-                      {{ spot.description }}
+                  <!-- 日程卡片 -->
+                  <div
+                    class="group rounded-lg border border-orange-100 bg-white p-4 shadow-sm transition-all duration-300 hover:border-orange-200 hover:shadow-md"
+                  >
+                    <!-- 日程标题 -->
+                    <h3
+                      class="mb-3 flex items-center text-base font-medium text-gray-900"
+                    >
+                      <span class="mr-2 text-lg font-bold text-orange-500"
+                        >Day {{ index + 1 }}</span
+                      >
+                      {{ day.title }}
+                    </h3>
+                    <p class="mb-4 text-sm text-gray-500">
+                      {{ day.description }}
                     </p>
 
-                    <!-- 添加更多景点信息 -->
-                    <div class="mt-4 flex flex-wrap items-center gap-4 md:mt-3">
-                      <span class="text-sm text-gray-500">
-                        <i class="fas fa-clock mr-1"></i>
-                        {{ spot.openTime }}
-                      </span>
-                      <span class="text-sm text-gray-500">
-                        <i class="fas fa-ticket-alt mr-1"></i>
-                        {{ spot.ticket }}
-                      </span>
+                    <!-- 景点列表 -->
+                    <div class="space-y-4">
+                      <div
+                        v-for="(spot, spotIndex) in day.spots"
+                        :key="spotIndex"
+                        class="group/spot relative ml-4 transform overflow-hidden rounded-lg border border-gray-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+                        :class="{
+                          'md:flex md:items-start':
+                            deviceType.isTablet || deviceType.isDesktop,
+                        }"
+                      >
+                        <!-- 连接线装饰 -->
+                        <div
+                          class="absolute top-1/2 -left-4 h-0.5 w-4 bg-orange-200"
+                        ></div>
+                        <div
+                          class="absolute top-0 -left-4 h-full w-0.5 bg-orange-200"
+                        ></div>
+
+                        <!-- 原有的景点内容保持不变 -->
+                        <div
+                          class="relative h-56 overflow-hidden md:h-32 md:w-48 lg:h-40 lg:w-64"
+                          :class="{
+                            'w-full': deviceType.isMobile,
+                          }"
+                        >
+                          <img
+                            :src="spot.image"
+                            :alt="spot.name"
+                            class="h-full w-full object-cover transition-transform duration-500 group-hover/spot:scale-110"
+                          />
+                          <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"
+                          ></div>
+                        </div>
+
+                        <!-- 景点信息部分保持不变 -->
+                        <div class="flex-1 p-6 md:p-4">
+                          <div class="flex items-center justify-between">
+                            <h4 class="font-medium text-gray-900">
+                              {{ spot.name }}
+                            </h4>
+                            <span class="text-sm text-gray-500">{{
+                              spot.duration
+                            }}</span>
+                          </div>
+                          <p class="mt-2 text-sm text-gray-500">
+                            {{ spot.description }}
+                          </p>
+
+                          <!-- 添加更多景点信息 -->
+                          <div
+                            class="mt-4 flex flex-wrap items-center gap-4 md:mt-3"
+                          >
+                            <span class="text-sm text-gray-500">
+                              <i class="fas fa-clock mr-1"></i>
+                              {{ spot.openTime }}
+                            </span>
+                            <span class="text-sm text-gray-500">
+                              <i class="fas fa-ticket-alt mr-1"></i>
+                              {{ spot.ticket }}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -620,5 +657,17 @@ onMounted(() => {
   .group:active {
     transform: scale(0.98);
   }
+}
+
+/* 添加时间轴动画效果 */
+.group:hover .absolute.-left-4 {
+  background-color: rgb(251 146 60);
+}
+
+/* 时间轴节点悬停效果 */
+.group:hover .absolute.\-left-\[2\.25rem\] {
+  transform: scale(1.1);
+  border-color: #fb923c;
+  transition: all 0.3s ease;
 }
 </style>
