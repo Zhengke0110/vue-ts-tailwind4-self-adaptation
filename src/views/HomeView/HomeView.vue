@@ -12,7 +12,7 @@
       <div
         class="absolute inset-0 bg-gradient-to-b from-transparent to-black/30"
       >
-        <div class="container mx-auto px-4 py-4 md:py-6">
+        <div class="mx-auto h-full px-4 md:px-6 lg:max-w-7xl lg:px-8">
           <div class="flex items-center justify-between">
             <button class="text-white" @click="handleBack">
               <i class="fas fa-chevron-left text-xl"></i>
@@ -107,10 +107,10 @@
     </header>
 
     <!-- Main Content -->
-    <main class="relative z-10 container mx-auto -mt-6 px-4">
+    <main class="relative z-10 mx-auto -mt-6 px-4 md:px-6 lg:max-w-7xl lg:px-8">
       <!-- Feature Grid -->
       <div
-        class="animate-slide-up mb-4 rounded-xl bg-white p-4 shadow-lg md:mb-6 md:p-6"
+        class="animate-slide-up mb-4 rounded-xl bg-white p-4 shadow-lg md:mb-6 md:p-6 lg:mb-8 lg:rounded-2xl lg:p-8"
       >
         <div
           class="grid grid-cols-4 gap-2 md:grid-cols-6 md:gap-4 lg:grid-cols-8"
@@ -124,7 +124,7 @@
       </div>
 
       <!-- Route Recommendations -->
-      <section class="animate-slide-up mb-4 delay-100 md:mb-6">
+      <section class="animate-slide-up mb-4 delay-100 md:mb-6 lg:mb-8">
         <div class="mb-3 flex items-center justify-between md:mb-4">
           <h2 class="text-base font-semibold md:text-lg">路线推荐</h2>
           <button class="text-xs text-gray-500 md:text-sm">更多 ></button>
@@ -219,7 +219,7 @@
       </TransitionRoot>
 
       <!-- Location Categories -->
-      <section class="animate-slide-up mb-4 delay-200 md:mb-6">
+      <section class="animate-slide-up mb-4 delay-200 md:mb-6 lg:mb-8">
         <TabGroup>
           <TabList
             class="hide-scrollbar mb-3 flex gap-2 overflow-x-auto md:mb-4"
@@ -292,7 +292,7 @@
       </section>
 
       <!-- Popular Recommendations -->
-      <section class="animate-slide-up mb-4 delay-300 md:mb-6">
+      <section class="animate-slide-up mb-4 delay-300 md:mb-6 lg:mb-8">
         <h2 class="mb-3 text-base font-semibold md:mb-4 md:text-lg">
           人气推荐
         </h2>

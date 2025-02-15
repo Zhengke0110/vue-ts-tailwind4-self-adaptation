@@ -4,8 +4,8 @@
     tabindex="0"
     role="article"
   >
-    <!-- 移动端显示完整布局 -->
-    <template v-if="!deviceType.isTablet">
+    <!-- 移动端布局 -->
+    <template v-if="deviceType.isMobile">
       <img :src="image" :alt="name" class="h-20 w-20 object-cover" />
       <div class="flex flex-1 flex-col justify-center p-3">
         <h3
@@ -27,8 +27,8 @@
       </div>
     </template>
 
-    <!-- 平板端简洁布局 -->
-    <template v-else>
+    <!-- 平板端布局 -->
+    <template v-else-if="deviceType.isTablet">
       <div class="relative aspect-square w-full overflow-hidden">
         <img
           :src="image"
@@ -46,8 +46,8 @@
       </div>
     </template>
 
-    <!-- 桌面端恢复完整布局 -->
-    <template v-if="deviceType.isDesktop">
+    <!-- 桌面端布局 -->
+    <template v-else>
       <img :src="image" :alt="name" class="h-28 w-28 object-cover" />
       <div class="flex flex-1 flex-col justify-center p-4">
         <h3
