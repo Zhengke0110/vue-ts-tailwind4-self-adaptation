@@ -12,6 +12,14 @@ const routes: RouteRecordRaw[] = [
     component: () => import("@/views/HomeView"),
   },
   {
+    path: "/routes",
+    name: "routes",
+    component: () => import("@/views/RouteRecommendationView"),
+    meta: {
+      title: "路线推荐",
+    },
+  },
+  {
     path: "/routes/:id",
     name: "route-detail",
     component: () => import("@/views/RouteDetailView"),
