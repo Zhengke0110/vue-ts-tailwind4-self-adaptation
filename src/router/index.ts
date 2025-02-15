@@ -24,6 +24,14 @@ const routes: RouteRecordRaw[] = [
     },
   },
   {
+    path: "/attractions",
+    name: "attractions",
+    component: () => import("@/views/AttractionsView"),
+    meta: {
+      title: "景点",
+    },
+  },
+  {
     path: "/:pathMatch(.*)*",
     name: "not-found",
     component: () => import("@/views/Error.vue"),
