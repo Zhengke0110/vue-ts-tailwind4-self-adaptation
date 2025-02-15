@@ -16,6 +16,14 @@ const routes: RouteRecordRaw[] = [
     component: () => import("@/views/RouteDetailView"),
   },
   {
+    path: "/food",
+    name: "food",
+    component: () => import("@/views/FoodView"),
+    meta: {
+      title: "美食",
+    },
+  },
+  {
     path: "/:pathMatch(.*)*",
     name: "not-found",
     component: () => import("@/views/Error.vue"),

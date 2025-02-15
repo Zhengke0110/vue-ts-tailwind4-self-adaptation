@@ -367,7 +367,7 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
-import { TransitionGroup } from "vue";
+
 import FeatureButton from "./components/FeatureButton.vue";
 import RouteCard from "./components/RouteCard.vue";
 import LocationCard from "./components/LocationCard.vue";
