@@ -1,7 +1,9 @@
 <template>
   <div class="min-h-screen bg-orange-50">
     <!-- Header Section -->
-    <header class="relative h-[300px] w-full overflow-hidden">
+    <header
+      class="relative h-[200px] w-full overflow-hidden md:h-[250px] lg:h-[300px]"
+    >
       <img
         :src="HomeBanner"
         alt="Sunset cityscape"
@@ -10,7 +12,7 @@
       <div
         class="absolute inset-0 bg-gradient-to-b from-transparent to-black/30"
       >
-        <div class="container mx-auto px-4 py-6">
+        <div class="container mx-auto px-4 py-4 md:py-6">
           <div class="flex items-center justify-between">
             <button class="text-white" @click="handleBack">
               <i class="fas fa-chevron-left text-xl"></i>
@@ -95,7 +97,9 @@
               </Menu>
             </div>
           </div>
-          <h1 class="animate-fade-in mt-8 text-4xl font-bold text-white">
+          <h1
+            class="animate-fade-in mt-4 text-2xl font-bold text-white md:mt-6 md:text-3xl lg:mt-8 lg:text-4xl"
+          >
             金华
           </h1>
         </div>
@@ -105,8 +109,12 @@
     <!-- Main Content -->
     <main class="relative z-10 container mx-auto -mt-6 px-4">
       <!-- Feature Grid -->
-      <div class="animate-slide-up mb-6 rounded-xl bg-white p-6 shadow-lg">
-        <div class="grid grid-cols-4 gap-4">
+      <div
+        class="animate-slide-up mb-4 rounded-xl bg-white p-4 shadow-lg md:mb-6 md:p-6"
+      >
+        <div
+          class="grid grid-cols-4 gap-2 md:grid-cols-6 md:gap-4 lg:grid-cols-8"
+        >
           <FeatureButton
             v-for="feature in features"
             :key="feature.id"
@@ -116,12 +124,17 @@
       </div>
 
       <!-- Route Recommendations -->
-      <section class="animate-slide-up mb-6 delay-100">
-        <div class="mb-4 flex items-center justify-between">
-          <h2 class="text-lg font-semibold">路线推荐</h2>
-          <button class="text-sm text-gray-500">更多 ></button>
+      <section class="animate-slide-up mb-4 delay-100 md:mb-6">
+        <div class="mb-3 flex items-center justify-between md:mb-4">
+          <h2 class="text-base font-semibold md:text-lg">路线推荐</h2>
+          <button class="text-xs text-gray-500 md:text-sm">更多 ></button>
         </div>
-        <div class="hide-scrollbar flex gap-4 overflow-x-auto pb-2">
+        <div
+          class="hide-scrollbar flex gap-3 overflow-x-auto pb-2 md:gap-4"
+          :class="{
+            'lg:grid lg:grid-cols-3': deviceType.isDesktop,
+          }"
+        >
           <RouteCard
             v-for="route in routes"
             :key="route.id"
@@ -206,16 +219,18 @@
       </TransitionRoot>
 
       <!-- Location Categories -->
-      <section class="animate-slide-up mb-6 delay-200">
+      <section class="animate-slide-up mb-4 delay-200 md:mb-6">
         <TabGroup>
-          <TabList class="mb-4 flex gap-2">
+          <TabList
+            class="hide-scrollbar mb-3 flex gap-2 overflow-x-auto md:mb-4"
+          >
             <Tab
               v-for="tab in locationTabs"
               :key="tab.id"
               v-slot="{ selected }"
             >
               <button
-                class="rounded-full px-4 py-2 transition-colors focus:ring-2 focus:ring-orange-500 focus:outline-none"
+                class="rounded-full px-4 py-2 text-sm whitespace-nowrap transition-colors focus:ring-2 focus:ring-orange-500 focus:outline-none md:text-base"
                 :class="
                   selected
                     ? 'bg-orange-500 text-white'
@@ -239,13 +254,37 @@
               <TabPanel
                 v-for="tab in locationTabs"
                 :key="tab.id"
-                class="space-y-4 focus:outline-none"
+                class="space-y-3 focus:outline-none md:space-y-4"
               >
-                <LocationCard
-                  v-for="location in tab.locations"
-                  :key="location.id"
-                  v-bind="location"
-                />
+                <div
+                  class="grid gap-3 md:gap-4"
+                  :class="{
+                    'md:grid-cols-1': deviceType.isTablet,
+                    'lg:grid-cols-3': deviceType.isDesktop,
+                  }"
+                >
+                  <!-- 平板端横向滚动容器 -->
+                  <div
+                    v-if="deviceType.isTablet"
+                    class="hide-scrollbar flex gap-4 overflow-x-auto pb-2"
+                  >
+                    <LocationCard
+                      v-for="location in tab.locations"
+                      :key="location.id"
+                      v-bind="location"
+                      class="md:w-[280px] md:flex-shrink-0"
+                    />
+                  </div>
+
+                  <!-- 移动端和桌面端正常显示 -->
+                  <template v-else>
+                    <LocationCard
+                      v-for="location in tab.locations"
+                      :key="location.id"
+                      v-bind="location"
+                    />
+                  </template>
+                </div>
               </TabPanel>
             </TransitionGroup>
           </TabPanels>
@@ -253,9 +292,13 @@
       </section>
 
       <!-- Popular Recommendations -->
-      <section class="animate-slide-up mb-6 delay-300">
-        <h2 class="mb-4 text-lg font-semibold">人气推荐</h2>
-        <div class="grid grid-cols-2 gap-4">
+      <section class="animate-slide-up mb-4 delay-300 md:mb-6">
+        <h2 class="mb-3 text-base font-semibold md:mb-4 md:text-lg">
+          人气推荐
+        </h2>
+        <div
+          class="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4 lg:grid-cols-3"
+        >
           <PopularCard
             v-for="item in popularItems"
             :key="item.id"
@@ -299,6 +342,8 @@ import {
   popularItems,
 } from "./index";
 import type { Route } from "./index";
+
+import { deviceType } from "@/utils/flexible";
 
 const routes = ref<Route[]>(routeRecommendations);
 
