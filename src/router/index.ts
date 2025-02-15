@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import type { RouteRecordRaw } from "vue-router";
+
 const routes: RouteRecordRaw[] = [
   {
     path: "/",
@@ -29,6 +30,14 @@ const routes: RouteRecordRaw[] = [
     component: () => import("@/views/AttractionsView"),
     meta: {
       title: "景点",
+    },
+  },
+  {
+    path: "/attraction/:id",
+    name: "attractionDetail",
+    component: () => import("@/views/AttractionsView/AttractionDetail.vue"),
+    meta: {
+      title: "景点详情",
     },
   },
   {

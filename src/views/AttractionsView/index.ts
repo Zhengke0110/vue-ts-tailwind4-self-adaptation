@@ -1,6 +1,9 @@
 import Attractions from "./AttractionsView.vue";
 export default Attractions;
 
+import AttractionDetail from "./AttractionDetail.vue";
+export { AttractionDetail };
+
 import Banner from "@/assets/images/attractions/banner.png";
 export { Banner };
 
@@ -48,7 +51,7 @@ export interface Attraction {
   title: string;
   description: string;
   detailedInfo: DetailedInfo;
-  image: string;
+  image: string | string[];
   category: "natural" | "historical" | "cultural";
   rating: number;
   reviews: number;
@@ -84,7 +87,7 @@ const attractions: Attraction[] = [
         rest: "设有休息亭和观景平台",
       },
     },
-    image: "@/assets/images/places/dongbaishan.jpg",
+    image: [Banner],
     category: "natural",
     rating: 4.5,
     reviews: 1283,
@@ -124,7 +127,7 @@ const attractions: Attraction[] = [
         rest: "设有休息亭和观景平台",
       },
     },
-    image: "@/assets/images/places/jinhuashan.jpg",
+    image: [Banner],
     category: "natural",
     rating: 4.3,
     reviews: 982,
@@ -163,7 +166,7 @@ const attractions: Attraction[] = [
         rest: "设有休息区",
       },
     },
-    image: "@/assets/images/places/shuanglongdong.jpg",
+    image: [Banner],
     category: "historical",
     rating: 4.7,
     reviews: 2156,
@@ -202,7 +205,7 @@ const attractions: Attraction[] = [
         rest: "设有休息区",
       },
     },
-    image: "@/assets/images/places/baguacun.jpg",
+    image: [Banner],
     category: "cultural",
     rating: 4.6,
     reviews: 1677,
@@ -241,7 +244,7 @@ const attractions: Attraction[] = [
         rest: "设有休息区",
       },
     },
-    image: "@/assets/images/places/huotuibowuguan.jpg",
+    image: [Banner],
     category: "cultural",
     rating: 4.4,
     reviews: 856,
@@ -276,7 +279,7 @@ const attractions: Attraction[] = [
         rest: "设有休息亭和观景平台",
       },
     },
-    image: "@/assets/images/places/fangyan.jpg",
+    image: [Banner],
     category: "natural",
     rating: 4.8,
     reviews: 1432,
@@ -315,7 +318,7 @@ const attractions: Attraction[] = [
         rest: "设有休息区",
       },
     },
-    image: "@/assets/images/places/qingtongbowuguan.jpg",
+    image: [Banner],
     category: "cultural",
     rating: 4.2,
     reviews: 463,
@@ -350,7 +353,7 @@ const attractions: Attraction[] = [
         rest: "设有休息区",
       },
     },
-    image: "@/assets/images/places/nankongmiao.jpg",
+    image: [Banner],
     category: "historical",
     rating: 4.5,
     reviews: 892,
@@ -389,7 +392,7 @@ const attractions: Attraction[] = [
         rest: "设有休息区",
       },
     },
-    image: "@/assets/images/places/jinhuabowuguan.jpg",
+    image: [Banner],
     category: "cultural",
     rating: 4.4,
     reviews: 725,
@@ -424,7 +427,7 @@ const attractions: Attraction[] = [
         rest: "设有休息区",
       },
     },
-    image: "@/assets/images/places/zhengyimen.jpg",
+    image: [Banner],
     category: "historical",
     rating: 4.6,
     reviews: 1089,
@@ -463,7 +466,7 @@ const attractions: Attraction[] = [
         rest: "设有休息亭和观景平台",
       },
     },
-    image: "@/assets/images/places/niutoushan.jpg",
+    image: [Banner],
     category: "natural",
     rating: 4.5,
     reviews: 1566,
@@ -502,7 +505,7 @@ const attractions: Attraction[] = [
         rest: "设有休息区",
       },
     },
-    image: "@/assets/images/places/lingshansi.jpg",
+    image: [Banner],
     category: "historical",
     rating: 4.3,
     reviews: 678,
@@ -541,7 +544,7 @@ const attractions: Attraction[] = [
         rest: "设有休息区",
       },
     },
-    image: "@/assets/images/places/chengzhongjie.jpg",
+    image: [Banner],
     category: "cultural",
     rating: 4.4,
     reviews: 2145,
@@ -576,7 +579,7 @@ const attractions: Attraction[] = [
         rest: "设有休息亭和观景平台",
       },
     },
-    image: "@/assets/images/places/huaxigu.jpg",
+    image: [Banner],
     category: "natural",
     rating: 4.7,
     reviews: 892,
@@ -615,7 +618,7 @@ const attractions: Attraction[] = [
         rest: "设有休息区",
       },
     },
-    image: "@/assets/images/places/mudiaocheng.jpg",
+    image: [Banner],
     category: "cultural",
     rating: 4.5,
     reviews: 1234,
@@ -636,3 +639,50 @@ const attractions: Attraction[] = [
 ];
 
 export { attractions };
+
+export const attraction: Attraction = {
+  id: "1",
+  title: "东白山",
+  description:
+    '国家4A级景区，海拔1194米，以原始森林、奇石怪洞、飞瀑流泉闻名，有"浙中第一山"之称。山中云海缭绕，瀑布飞流，是徒步登山、避暑纳凉的绝佳去处。',
+  detailedInfo: {
+    highlights: [
+      "原始森林景观",
+      "奇石怪洞",
+      "飞瀑流泉",
+      "云海日出",
+      "避暑胜地",
+    ],
+    mustSee: ["东白山顶观景台", "仙人洞", "百丈飞瀑", "杜鹃花园", "白云索道"],
+    bestTime: "4-10月，其中4-5月杜鹃花开，秋季层林尽染最适合观赏",
+    tips: "山顶温差大，建议携带保暖衣物；雨天路滑需注意安全；建议携带登山手杖",
+    facilities: {
+      dining: "山顶设有餐厅，提供农家菜；沿途设有小卖部",
+      parking: "景区设有大型停车场，可容纳200辆车",
+      restroom: "各景点均设有公共卫生间",
+      rest: "设有休息亭和观景平台",
+    },
+  },
+  image: [Banner],
+  category: "natural",
+  rating: 4.5,
+  reviews: 1283,
+  location: "金华市婺城区西北部",
+  price: {
+    adult: "80元/人",
+    child: "40元/人",
+    senior: "40元/人",
+    cableway: "40元/人(单程)",
+  },
+  openTime: "全年开放 07:30-17:00",
+  transportation: {
+    bus: "金华客运中心乘坐东白山专线直达",
+    drive: "导航东白山景区停车场，距离金华市区约45分钟车程",
+    recommended: "自驾最为便捷",
+  },
+  suggestedTime: "建议游玩4-6小时",
+  contact: {
+    phone: "0579-82XXXXX",
+    website: "http://www.dbshan.com",
+  },
+};
