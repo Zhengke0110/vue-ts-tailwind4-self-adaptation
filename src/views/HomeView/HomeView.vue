@@ -1,312 +1,351 @@
 <template>
-  <div class="min-h-screen bg-orange-50">
-    <!-- Header Section -->
-    <header
-      class="relative h-[200px] w-full overflow-hidden md:h-[250px] lg:h-[300px]"
+  <div
+    class="min-h-screen bg-orange-50"
+    :class="{ 'lg:px-[var(--viewport-padding)] lg:py-8': deviceType.isDesktop }"
+  >
+    <!-- 桌面端容器 -->
+    <div
+      :class="{
+        'mx-auto lg:max-w-6xl lg:overflow-hidden lg:rounded-2xl lg:bg-white lg:shadow-xl':
+          deviceType.isDesktop,
+      }"
     >
-      <img
-        :src="HomeBanner"
-        alt="Sunset cityscape"
-        class="h-full w-full object-cover"
-      />
-      <div
-        class="absolute inset-0 bg-gradient-to-b from-transparent to-black/30"
+      <!-- Header Section -->
+      <header
+        class="relative h-[200px] w-full overflow-hidden md:h-[250px]"
+        :class="{ 'lg:h-[400px] lg:rounded-t-2xl': deviceType.isDesktop }"
       >
-        <div class="mx-auto h-full px-4 md:px-6 lg:max-w-7xl lg:px-8">
-          <div class="flex items-center justify-between">
-            <button class="text-white" @click="handleBack">
-              <i class="fas fa-chevron-left text-xl"></i>
-            </button>
-            <div class="flex items-center gap-4">
-              <!-- Share Menu -->
-              <Menu as="div" class="relative">
-                <MenuButton
-                  class="rounded-full p-1 text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none"
-                >
-                  <i class="fas fa-share-alt text-xl"></i>
-                </MenuButton>
-                <TransitionRoot
-                  enter="transition duration-200 ease-out"
-                  enter-from="transform scale-95 opacity-0"
-                  enter-to="transform scale-100 opacity-100"
-                  leave="transition duration-150 ease-in"
-                  leave-from="transform scale-100 opacity-100"
-                  leave-to="transform scale-95 opacity-0"
-                >
-                  <MenuItems
-                    class="ring-opacity-5 absolute right-0 mt-2 w-48 origin-top-right rounded-xl bg-white py-1 ring-1 shadow-lg ring-black focus:outline-none"
-                  >
-                    <MenuItem
-                      v-for="option in shareOptions"
-                      :key="option.name"
-                      v-slot="{ active }"
-                    >
-                      <button
-                        class="flex w-full items-center px-4 py-2 text-sm"
-                        :class="
-                          active
-                            ? 'bg-orange-50 text-orange-500'
-                            : 'text-gray-700'
-                        "
-                      >
-                        <i :class="[option.icon, 'mr-3 text-lg']"></i>
-                        {{ option.name }}
-                      </button>
-                    </MenuItem>
-                  </MenuItems>
-                </TransitionRoot>
-              </Menu>
-
-              <!-- More Menu -->
-              <Menu as="div" class="relative">
-                <MenuButton
-                  class="rounded-full p-1 text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none"
-                >
-                  <i class="fas fa-ellipsis-h text-xl"></i>
-                </MenuButton>
-                <transition
-                  enter-active-class="transition duration-100 ease-out"
-                  enter-from-class="transform scale-95 opacity-0"
-                  enter-to-class="transform scale-100 opacity-100"
-                  leave-active-class="transition duration-75 ease-in"
-                  leave-from-class="transform scale-100 opacity-100"
-                  leave-to-class="transform scale-95 opacity-0"
-                >
-                  <MenuItems
-                    class="ring-opacity-5 absolute right-0 mt-2 w-48 origin-top-right rounded-xl bg-white py-1 ring-1 shadow-lg ring-black focus:outline-none"
-                  >
-                    <MenuItem
-                      v-for="option in moreOptions"
-                      :key="option.name"
-                      v-slot="{ active }"
-                    >
-                      <button
-                        class="flex w-full items-center px-4 py-2 text-sm"
-                        :class="
-                          active
-                            ? 'bg-orange-50 text-orange-500'
-                            : 'text-gray-700'
-                        "
-                      >
-                        <i :class="[option.icon, 'mr-3 text-lg']"></i>
-                        {{ option.name }}
-                      </button>
-                    </MenuItem>
-                  </MenuItems>
-                </transition>
-              </Menu>
-            </div>
-          </div>
-          <h1
-            class="animate-fade-in mt-4 text-2xl font-bold text-white md:mt-6 md:text-3xl lg:mt-8 lg:text-4xl"
-          >
-            金华
-          </h1>
-        </div>
-      </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="relative z-10 mx-auto -mt-6 px-4 md:px-6 lg:max-w-7xl lg:px-8">
-      <!-- Feature Grid -->
-      <div
-        class="animate-slide-up mb-4 rounded-xl bg-white p-4 shadow-lg md:mb-6 md:p-6 lg:mb-8 lg:rounded-2xl lg:p-8"
-      >
+        <img
+          :src="HomeBanner"
+          alt="Sunset cityscape"
+          class="h-full w-full object-cover"
+        />
         <div
-          class="grid grid-cols-4 gap-2 md:grid-cols-6 md:gap-4 lg:grid-cols-8"
+          class="absolute inset-0 bg-gradient-to-b from-transparent to-black/30"
         >
-          <FeatureButton
-            v-for="feature in features"
-            :key="feature.id"
-            v-bind="feature"
-          />
-        </div>
-      </div>
+          <div class="mx-auto h-full px-4 md:px-6 lg:max-w-7xl lg:px-8">
+            <div class="flex items-center justify-between">
+              <button class="text-white" @click="handleBack">
+                <i class="fas fa-chevron-left text-xl"></i>
+              </button>
+              <div class="flex items-center gap-4">
+                <!-- Share Menu -->
+                <Menu as="div" class="relative">
+                  <MenuButton
+                    class="rounded-full p-1 text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none"
+                  >
+                    <i class="fas fa-share-alt text-xl"></i>
+                  </MenuButton>
+                  <TransitionRoot
+                    enter="transition duration-200 ease-out"
+                    enter-from="transform scale-95 opacity-0"
+                    enter-to="transform scale-100 opacity-100"
+                    leave="transition duration-150 ease-in"
+                    leave-from="transform scale-100 opacity-100"
+                    leave-to="transform scale-95 opacity-0"
+                  >
+                    <MenuItems
+                      class="ring-opacity-5 absolute right-0 mt-2 w-48 origin-top-right rounded-xl bg-white py-1 ring-1 shadow-lg ring-black focus:outline-none"
+                    >
+                      <MenuItem
+                        v-for="option in shareOptions"
+                        :key="option.name"
+                        v-slot="{ active }"
+                      >
+                        <button
+                          class="flex w-full items-center px-4 py-2 text-sm"
+                          :class="
+                            active
+                              ? 'bg-orange-50 text-orange-500'
+                              : 'text-gray-700'
+                          "
+                        >
+                          <i :class="[option.icon, 'mr-3 text-lg']"></i>
+                          {{ option.name }}
+                        </button>
+                      </MenuItem>
+                    </MenuItems>
+                  </TransitionRoot>
+                </Menu>
 
-      <!-- Route Recommendations -->
-      <section class="animate-slide-up mb-4 delay-100 md:mb-6 lg:mb-8">
-        <div class="mb-3 flex items-center justify-between md:mb-4">
-          <h2 class="text-base font-semibold md:text-lg">路线推荐</h2>
-          <button class="text-xs text-gray-500 md:text-sm">更多 ></button>
+                <!-- More Menu -->
+                <Menu as="div" class="relative">
+                  <MenuButton
+                    class="rounded-full p-1 text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none"
+                  >
+                    <i class="fas fa-ellipsis-h text-xl"></i>
+                  </MenuButton>
+                  <transition
+                    enter-active-class="transition duration-100 ease-out"
+                    enter-from-class="transform scale-95 opacity-0"
+                    enter-to-class="transform scale-100 opacity-100"
+                    leave-active-class="transition duration-75 ease-in"
+                    leave-from-class="transform scale-100 opacity-100"
+                    leave-to-class="transform scale-95 opacity-0"
+                  >
+                    <MenuItems
+                      class="ring-opacity-5 absolute right-0 mt-2 w-48 origin-top-right rounded-xl bg-white py-1 ring-1 shadow-lg ring-black focus:outline-none"
+                    >
+                      <MenuItem
+                        v-for="option in moreOptions"
+                        :key="option.name"
+                        v-slot="{ active }"
+                      >
+                        <button
+                          class="flex w-full items-center px-4 py-2 text-sm"
+                          :class="
+                            active
+                              ? 'bg-orange-50 text-orange-500'
+                              : 'text-gray-700'
+                          "
+                        >
+                          <i :class="[option.icon, 'mr-3 text-lg']"></i>
+                          {{ option.name }}
+                        </button>
+                      </MenuItem>
+                    </MenuItems>
+                  </transition>
+                </Menu>
+              </div>
+            </div>
+            <h1
+              class="animate-fade-in mt-4 text-2xl font-bold text-white md:mt-6 md:text-3xl lg:mt-8 lg:text-4xl"
+            >
+              金华
+            </h1>
+          </div>
         </div>
+      </header>
+
+      <!-- Main Content -->
+      <main
+        class="relative z-10 mx-auto -mt-6 px-4 md:px-6"
+        :class="{ 'lg:mt-0 lg:px-8 lg:py-8': deviceType.isDesktop }"
+      >
+        <!-- Feature Grid -->
         <div
-          class="hide-scrollbar flex gap-3 overflow-x-auto pb-2 md:gap-4"
+          class="animate-slide-up mb-4 rounded-xl bg-white p-4 shadow-lg md:mb-6 md:p-6"
           :class="{
-            'lg:grid lg:grid-cols-3': deviceType.isDesktop,
+            'lg:mb-12 lg:rounded-xl lg:bg-gray-50/50 lg:p-8 lg:shadow-sm':
+              deviceType.isDesktop,
           }"
         >
-          <RouteCard
-            v-for="route in routes"
-            :key="route.id"
-            v-bind="route"
-            @click="handleRouteClick(route)"
-          />
-        </div>
-      </section>
-
-      <!-- Route Detail Dialog -->
-      <TransitionRoot appear :show="isRouteDetailOpen" as="template">
-        <Dialog as="div" class="relative z-50" @close="closeRouteDetail">
-          <TransitionChild
-            as="template"
-            enter="duration-300 ease-out"
-            enter-from="opacity-0"
-            enter-to="opacity-100"
-            leave="duration-200 ease-in"
-            leave-from="opacity-100"
-            leave-to="opacity-0"
+          <div
+            class="grid grid-cols-4 gap-2 md:grid-cols-6 md:gap-4 lg:grid-cols-8"
           >
-            <div class="fixed inset-0 bg-black/30 backdrop-blur-sm" />
-          </TransitionChild>
-
-          <div class="fixed inset-0 overflow-y-auto">
-            <div
-              class="flex min-h-full items-center justify-center p-4 text-center"
-            >
-              <TransitionChild
-                as="template"
-                enter="duration-300 ease-out"
-                enter-from="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                enter-to="opacity-100 translate-y-0 sm:scale-100"
-                leave="duration-200 ease-in"
-                leave-from="opacity-100 translate-y-0 sm:scale-100"
-                leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-              >
-                <DialogPanel
-                  class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
-                >
-                  <DialogTitle
-                    as="h3"
-                    class="text-lg leading-6 font-medium text-gray-900"
-                  >
-                    {{ selectedRoute?.title }}
-                  </DialogTitle>
-
-                  <div class="mt-4">
-                    <img
-                      :src="selectedRoute?.image"
-                      :alt="selectedRoute?.title"
-                      class="h-48 w-full rounded-lg object-cover"
-                    />
-                  </div>
-
-                  <div class="mt-4">
-                    <p class="text-sm text-gray-500">
-                      {{ selectedRoute?.description }}
-                    </p>
-                  </div>
-
-                  <div class="mt-6 flex justify-end gap-3">
-                    <button
-                      type="button"
-                      class="inline-flex justify-center rounded-md border border-transparent bg-orange-100 px-4 py-2 text-sm font-medium text-orange-900 hover:bg-orange-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
-                      @click="isRouteDetailOpen = false"
-                    >
-                      关闭
-                    </button>
-                    <button
-                      type="button"
-                      class="inline-flex justify-center rounded-md border border-transparent bg-orange-500 px-4 py-2 text-sm font-medium text-white hover:bg-orange-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
-                    >
-                      查看详情
-                    </button>
-                  </div>
-                </DialogPanel>
-              </TransitionChild>
-            </div>
+            <FeatureButton
+              v-for="feature in features"
+              :key="feature.id"
+              v-bind="feature"
+            />
           </div>
-        </Dialog>
-      </TransitionRoot>
+        </div>
 
-      <!-- Location Categories -->
-      <section class="animate-slide-up mb-4 delay-200 md:mb-6 lg:mb-8">
-        <TabGroup>
-          <TabList
-            class="hide-scrollbar mb-3 flex gap-2 overflow-x-auto md:mb-4"
+        <!-- Route Recommendations -->
+        <section
+          class="animate-slide-up mb-4 delay-100 md:mb-6"
+          :class="{ 'lg:mb-12': deviceType.isDesktop }"
+        >
+          <div
+            class="mb-3 flex items-center justify-between md:mb-4"
+            :class="{ 'lg:mb-8': deviceType.isDesktop }"
           >
-            <Tab
-              v-for="tab in locationTabs"
-              :key="tab.id"
-              v-slot="{ selected }"
+            <h2
+              class="text-base font-semibold md:text-lg"
+              :class="{ 'lg:text-2xl': deviceType.isDesktop }"
             >
-              <button
-                class="rounded-full px-4 py-2 text-sm whitespace-nowrap transition-colors focus:ring-2 focus:ring-orange-500 focus:outline-none md:text-base"
-                :class="
-                  selected
-                    ? 'bg-orange-500 text-white'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                "
-              >
-                {{ tab.name }}
-              </button>
-            </Tab>
-          </TabList>
+              路线推荐
+            </h2>
+            <button class="text-xs text-gray-500 md:text-sm">更多 ></button>
+          </div>
+          <div
+            class="hide-scrollbar flex gap-3 overflow-x-auto pb-2 md:gap-4"
+            :class="{
+              'lg:grid lg:grid-cols-3': deviceType.isDesktop,
+            }"
+          >
+            <RouteCard
+              v-for="route in routes"
+              :key="route.id"
+              v-bind="route"
+              @click="handleRouteClick(route)"
+            />
+          </div>
+        </section>
 
-          <TabPanels>
-            <TransitionGroup
-              enter-active-class="transition duration-200 ease-out"
-              enter-from-class="opacity-0 translate-y-4"
-              enter-to-class="opacity-100 translate-y-0"
-              leave-active-class="transition duration-150 ease-in"
-              leave-from-class="opacity-100 translate-y-0"
-              leave-to-class="opacity-0 translate-y-4"
+        <!-- Route Detail Dialog -->
+        <TransitionRoot appear :show="isRouteDetailOpen" as="template">
+          <Dialog as="div" class="relative z-50" @close="closeRouteDetail">
+            <TransitionChild
+              as="template"
+              enter="duration-300 ease-out"
+              enter-from="opacity-0"
+              enter-to="opacity-100"
+              leave="duration-200 ease-in"
+              leave-from="opacity-100"
+              leave-to="opacity-0"
             >
-              <TabPanel
+              <div class="fixed inset-0 bg-black/30 backdrop-blur-sm" />
+            </TransitionChild>
+
+            <div class="fixed inset-0 overflow-y-auto">
+              <div
+                class="flex min-h-full items-center justify-center p-4 text-center"
+              >
+                <TransitionChild
+                  as="template"
+                  enter="duration-300 ease-out"
+                  enter-from="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                  enter-to="opacity-100 translate-y-0 sm:scale-100"
+                  leave="duration-200 ease-in"
+                  leave-from="opacity-100 translate-y-0 sm:scale-100"
+                  leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                >
+                  <DialogPanel
+                    class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+                  >
+                    <DialogTitle
+                      as="h3"
+                      class="text-lg leading-6 font-medium text-gray-900"
+                    >
+                      {{ selectedRoute?.title }}
+                    </DialogTitle>
+
+                    <div class="mt-4">
+                      <img
+                        :src="selectedRoute?.image"
+                        :alt="selectedRoute?.title"
+                        class="h-48 w-full rounded-lg object-cover"
+                      />
+                    </div>
+
+                    <div class="mt-4">
+                      <p class="text-sm text-gray-500">
+                        {{ selectedRoute?.description }}
+                      </p>
+                    </div>
+
+                    <div class="mt-6 flex justify-end gap-3">
+                      <button
+                        type="button"
+                        class="inline-flex justify-center rounded-md border border-transparent bg-orange-100 px-4 py-2 text-sm font-medium text-orange-900 hover:bg-orange-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
+                        @click="isRouteDetailOpen = false"
+                      >
+                        关闭
+                      </button>
+                      <button
+                        type="button"
+                        class="inline-flex justify-center rounded-md border border-transparent bg-orange-500 px-4 py-2 text-sm font-medium text-white hover:bg-orange-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
+                      >
+                        查看详情
+                      </button>
+                    </div>
+                  </DialogPanel>
+                </TransitionChild>
+              </div>
+            </div>
+          </Dialog>
+        </TransitionRoot>
+
+        <!-- Location Categories -->
+        <section
+          class="animate-slide-up mb-4 delay-200 md:mb-6"
+          :class="{ 'lg:mb-12': deviceType.isDesktop }"
+        >
+          <TabGroup>
+            <TabList
+              class="hide-scrollbar mb-3 flex gap-2 overflow-x-auto md:mb-4"
+            >
+              <Tab
                 v-for="tab in locationTabs"
                 :key="tab.id"
-                class="space-y-3 focus:outline-none md:space-y-4"
+                v-slot="{ selected }"
               >
-                <div
-                  class="grid gap-3 md:gap-4"
-                  :class="{
-                    'md:grid-cols-1': deviceType.isTablet,
-                    'lg:grid-cols-3': deviceType.isDesktop,
-                  }"
+                <button
+                  class="rounded-full px-4 py-2 text-sm whitespace-nowrap transition-colors focus:ring-2 focus:ring-orange-500 focus:outline-none md:text-base"
+                  :class="
+                    selected
+                      ? 'bg-orange-500 text-white'
+                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  "
                 >
-                  <!-- 平板端横向滚动容器 -->
+                  {{ tab.name }}
+                </button>
+              </Tab>
+            </TabList>
+
+            <TabPanels>
+              <TransitionGroup
+                enter-active-class="transition duration-200 ease-out"
+                enter-from-class="opacity-0 translate-y-4"
+                enter-to-class="opacity-100 translate-y-0"
+                leave-active-class="transition duration-150 ease-in"
+                leave-from-class="opacity-100 translate-y-0"
+                leave-to-class="opacity-0 translate-y-4"
+              >
+                <TabPanel
+                  v-for="tab in locationTabs"
+                  :key="tab.id"
+                  class="space-y-3 focus:outline-none md:space-y-4"
+                >
                   <div
-                    v-if="deviceType.isTablet"
-                    class="hide-scrollbar flex gap-4 overflow-x-auto pb-2"
+                    class="grid gap-3 md:gap-4"
+                    :class="{
+                      'md:grid-cols-1': deviceType.isTablet,
+                      'lg:grid-cols-3': deviceType.isDesktop,
+                    }"
                   >
-                    <LocationCard
-                      v-for="location in tab.locations"
-                      :key="location.id"
-                      v-bind="location"
-                      class="md:w-[280px] md:flex-shrink-0"
-                    />
+                    <!-- 平板端横向滚动容器 -->
+                    <div
+                      v-if="deviceType.isTablet"
+                      class="hide-scrollbar flex gap-4 overflow-x-auto pb-2"
+                    >
+                      <LocationCard
+                        v-for="location in tab.locations"
+                        :key="location.id"
+                        v-bind="location"
+                        class="md:w-[280px] md:flex-shrink-0"
+                      />
+                    </div>
+
+                    <!-- 移动端和桌面端正常显示 -->
+                    <template v-else>
+                      <LocationCard
+                        v-for="location in tab.locations"
+                        :key="location.id"
+                        v-bind="location"
+                      />
+                    </template>
                   </div>
+                </TabPanel>
+              </TransitionGroup>
+            </TabPanels>
+          </TabGroup>
+        </section>
 
-                  <!-- 移动端和桌面端正常显示 -->
-                  <template v-else>
-                    <LocationCard
-                      v-for="location in tab.locations"
-                      :key="location.id"
-                      v-bind="location"
-                    />
-                  </template>
-                </div>
-              </TabPanel>
-            </TransitionGroup>
-          </TabPanels>
-        </TabGroup>
-      </section>
-
-      <!-- Popular Recommendations -->
-      <section class="animate-slide-up mb-4 delay-300 md:mb-6 lg:mb-8">
-        <h2 class="mb-3 text-base font-semibold md:mb-4 md:text-lg">
-          人气推荐
-        </h2>
-        <div
-          class="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4 lg:grid-cols-3"
+        <!-- Popular Recommendations -->
+        <section
+          class="animate-slide-up mb-4 delay-300 md:mb-6"
+          :class="{ 'lg:mb-12': deviceType.isDesktop }"
         >
-          <PopularCard
-            v-for="item in popularItems"
-            :key="item.id"
-            v-bind="item"
-          />
-        </div>
-      </section>
-    </main>
+          <h2
+            class="mb-3 text-base font-semibold md:mb-4 md:text-lg"
+            :class="{ 'lg:text-2xl': deviceType.isDesktop }"
+          >
+            人气推荐
+          </h2>
+          <div
+            class="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4 lg:grid-cols-3"
+          >
+            <PopularCard
+              v-for="item in popularItems"
+              :key="item.id"
+              v-bind="item"
+            />
+          </div>
+        </section>
+      </main>
+    </div>
   </div>
 </template>
 
@@ -444,5 +483,11 @@ const moreOptions = [
 .tab-leave-from {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --viewport-padding: calc(100vw * 0.1);
+  }
 }
 </style>

@@ -38,6 +38,7 @@ export const useREM = () => {
   const MOBILE_FONT_SIZE = 16;
   const TABLET_FONT_SIZE = 20;
   const DESKTOP_FONT_SIZE = 22; // 新增桌面端基准字体大小
+  const DESKTOP_BASE_WIDTH = 1440; // 修改桌面端基准宽度为 1440px
 
   const setREM = () => {
     const html = document.documentElement;
@@ -54,12 +55,18 @@ export const useREM = () => {
       fontSize = Math.min(fontSize, TABLET_FONT_SIZE * 1.3);
       html.style.fontSize = `${fontSize}px`;
     } else {
-      // 桌面端新计算逻辑
-      let fontSize = (currentWidth / 1280) * DESKTOP_FONT_SIZE; // 使用 1280px 作为基准宽度
+      // 优化桌面端计算逻辑
+      let fontSize = (currentWidth / DESKTOP_BASE_WIDTH) * DESKTOP_FONT_SIZE;
       fontSize = Math.min(fontSize, MAX_FONT_SIZE);
       // 确保字体大小不会小于基准值
       fontSize = Math.max(fontSize, DESKTOP_FONT_SIZE);
       html.style.fontSize = `${fontSize}px`;
+
+      // 添加视口宽度标记
+      html.style.setProperty(
+        "--viewport-padding",
+        `${Math.min(currentWidth * 0.1, 120)}px`,
+      );
     }
   };
 
