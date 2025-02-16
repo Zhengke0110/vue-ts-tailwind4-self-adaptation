@@ -49,6 +49,14 @@ const routes: RouteRecordRaw[] = [
     },
   },
   {
+    path: "/culture",
+    name: "culture",
+    component: () => import("@/views/CultureView"),
+    meta: {
+      title: "人文景艺",
+    },
+  },
+  {
     path: "/:pathMatch(.*)*",
     name: "not-found",
     component: () => import("@/views/Error.vue"),
