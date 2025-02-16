@@ -26,26 +26,25 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 8
-          run_install: false
 
       - name: Get pnpm store directory
         shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
-      - name: Cache dependencies
+      - name: Setup pnpm cache
         uses: actions/cache@v3
         with:
-          path: |
-            ${{ env.STORE_PATH }}
-            node_modules
-            ~/.cache/Cypress
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/package.json') }}
           restore-keys: |
-            ${{ runner.os }}-pnpm-
+            ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: |
+          pnpm install
+          # 生成 pnpm-lock.yaml 文件
+          pnpm install --lockfile-only
 
       - name: Build
         run: pnpm build
