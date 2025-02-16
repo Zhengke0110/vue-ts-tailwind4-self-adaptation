@@ -2,8 +2,9 @@ import RouteRecommendationView from "./RouteRecommendationView.vue";
 export default RouteRecommendationView;
 
 import Banner from "@/assets/images/route/banner.png";
-export { Banner };
+import Empty from "@/assets/images/empty.png";
 
+export { Banner, Empty };
 export type Route = {
   id: string;
   title: string;
