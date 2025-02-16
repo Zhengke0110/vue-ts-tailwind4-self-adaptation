@@ -1,0 +1,417 @@
+<template>
+  <div
+    class="min-h-screen bg-gray-50"
+    :class="{ 'lg:px-[var(--viewport-padding)] lg:py-8': deviceType.isDesktop }"
+  >
+    <div
+      :class="{
+        'mx-auto lg:max-w-6xl lg:overflow-hidden lg:rounded-2xl lg:bg-white lg:shadow-xl':
+          deviceType.isDesktop,
+      }"
+    >
+      <!-- Header Section -->
+      <header class="relative h-48 w-full overflow-hidden md:h-56 lg:h-72">
+        <img
+          :src="Banner"
+          alt="个性化推荐"
+          class="absolute inset-0 h-full w-full object-cover transition-transform duration-700"
+        />
+        <div class="absolute inset-0">
+          <div class="absolute inset-0 backdrop-blur-[2px]"></div>
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60"
+          ></div>
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-transparent"
+          ></div>
+          <div class="absolute inset-0 bg-black/5"></div>
+        </div>
+
+        <div class="relative flex h-full flex-col px-4 py-4 md:px-6 lg:px-8">
+          <div class="flex items-center justify-between">
+            <button
+              class="text-white transition-transform hover:scale-105"
+              @click="router.back()"
+            >
+              <i class="fas fa-arrow-left text-xl"></i>
+            </button>
+            <div class="flex items-center space-x-4">
+              <button
+                class="text-white transition-transform hover:scale-105"
+                @click="toggleSearchModal"
+              >
+                <i class="fas fa-search text-xl"></i>
+              </button>
+              <Menu as="div" class="relative">
+                <MenuButton class="text-white">
+                  <i class="fas fa-ellipsis-h text-xl"></i>
+                </MenuButton>
+                <transition
+                  enter-active-class="transition duration-100 ease-out"
+                  enter-from-class="transform scale-95 opacity-0"
+                  enter-to-class="transform scale-100 opacity-100"
+                  leave-active-class="transition duration-75 ease-in"
+                  leave-from-class="transform scale-100 opacity-100"
+                  leave-to-class="transform scale-95 opacity-0"
+                >
+                  <MenuItems
+                    class="ring-opacity-5 absolute right-0 mt-2 w-48 origin-top-right rounded-xl bg-white py-1 ring-1 shadow-lg ring-black focus:outline-none"
+                  >
+                    <MenuItem v-slot="{ active }">
+                      <button
+                        class="flex w-full items-center px-4 py-2 text-sm"
+                        :class="
+                          active
+                            ? 'bg-purple-50 text-purple-500'
+                            : 'text-gray-700'
+                        "
+                      >
+                        <i class="fas fa-heart mr-3"></i>收藏
+                      </button>
+                    </MenuItem>
+                    <MenuItem v-slot="{ active }">
+                      <button
+                        class="flex w-full items-center px-4 py-2 text-sm"
+                        :class="
+                          active
+                            ? 'bg-purple-50 text-purple-500'
+                            : 'text-gray-700'
+                        "
+                      >
+                        <i class="fas fa-share-alt mr-3"></i>分享
+                      </button>
+                    </MenuItem>
+                  </MenuItems>
+                </transition>
+              </Menu>
+            </div>
+          </div>
+
+          <div class="mt-auto space-y-2">
+            <h1
+              class="text-2xl font-bold text-white drop-shadow-lg md:text-3xl lg:text-4xl"
+            >
+              为您推荐
+            </h1>
+            <p class="text-sm text-white/90 drop-shadow md:text-base lg:w-2/3">
+              探索金华独特体验，发现专属于您的精彩推荐
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                v-for="(label, category) in categoryLabel"
+                :key="category"
+                class="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs text-white shadow-sm backdrop-blur-md transition-all duration-300 hover:bg-white/20"
+              >
+                {{ label }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="px-4 py-6 md:px-6 lg:px-8">
+        <div class="grid gap-6" :class="gridColumns">
+          <TransitionGroup name="fade" appear>
+            <RecommendationCard
+              v-for="recommendation in personalRecommendations"
+              :key="recommendation.id"
+              :recommendation="recommendation"
+              @click="handleRecommendationSelect(recommendation)"
+            />
+          </TransitionGroup>
+        </div>
+      </main>
+
+      <!-- Modals -->
+      <RecommendationDetailModal
+        v-if="selectedRecommendation"
+        :recommendation="selectedRecommendation"
+        @close="selectedRecommendation = null"
+      />
+
+      <TransitionRoot appear :show="isSearchOpen" as="template">
+        <Dialog as="div" class="relative z-50" @close="closeSearch">
+          <TransitionChild
+            enter="duration-300 ease-out"
+            enter-from="opacity-0"
+            enter-to="opacity-100"
+            leave="duration-200 ease-in"
+            leave-from="opacity-100"
+            leave-to="opacity-0"
+          >
+            <div class="fixed inset-0 bg-black/30 backdrop-blur-sm" />
+          </TransitionChild>
+
+          <div class="fixed inset-0">
+            <div class="flex min-h-full items-start justify-center p-4">
+              <TransitionChild
+                enter="duration-300 ease-out"
+                enter-from="opacity-0 -translate-y-4"
+                enter-to="opacity-100 translate-y-0"
+                leave="duration-200 ease-in"
+                leave-from="opacity-100 translate-y-0"
+                leave-to="opacity-0 -translate-y-4"
+              >
+                <DialogPanel
+                  class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 shadow-xl transition-all"
+                >
+                  <div class="relative">
+                    <input
+                      v-model="searchQuery"
+                      type="text"
+                      placeholder="搜索推荐..."
+                      class="w-full rounded-lg border border-gray-200 px-4 py-2 pr-10 focus:border-purple-500 focus:outline-none"
+                    />
+                    <button
+                      v-if="searchQuery"
+                      class="absolute top-1/2 right-3 -translate-y-1/2 text-gray-400"
+                      @click="searchQuery = ''"
+                    >
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </DialogPanel>
+              </TransitionChild>
+            </div>
+          </div>
+        </Dialog>
+      </TransitionRoot>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref, computed, onMounted } from "vue";
+import { useRouter } from "vue-router";
+import { deviceType } from "@/utils/flexible";
+import type { Recommendation } from "./index";
+import { categoryLabel, Banner } from "./index";
+import RecommendationCard from "./components/RecommendationCard.vue";
+import RecommendationDetailModal from "./components/RecommendationDetailModal.vue";
+import {
+  Dialog,
+  DialogPanel,
+  TransitionChild,
+  TransitionRoot,
+  Menu,
+  MenuButton,
+  MenuItems,
+  MenuItem,
+} from "@headlessui/vue";
+
+const router = useRouter();
+const isSearchOpen = ref(false);
+const searchQuery = ref("");
+const selectedRecommendation = ref<Recommendation | null>(null);
+
+// Compute grid columns based on device type
+const gridColumns = computed(() => ({
+  "grid-cols-1": deviceType.value.isMobile,
+  "grid-cols-2": deviceType.value.isTablet,
+  "grid-cols-3": deviceType.value.isDesktop,
+}));
+
+const toggleSearchModal = () => {
+  isSearchOpen.value = true;
+};
+
+const closeSearch = () => {
+  isSearchOpen.value = false;
+  searchQuery.value = "";
+};
+
+const personalRecommendations = ref<Recommendation[]>([]);
+
+const fetchPersonalRecommendations = async () => {
+  // 模拟获取个性化推荐数据
+  personalRecommendations.value = [
+    {
+      id: "1",
+      title: "东阳婺剧体验",
+      description:
+        "感受浙江非遗文化的魅力，近距离体验传统戏曲艺术。由专业婺剧演员为您讲解基本功、表演技巧，并提供戏服试穿和基础表演教学。",
+      category: "culture",
+      image: "@/assets/images/recommendations/wuju-performance.jpg",
+      rating: 4.8,
+      tags: ["非遗文化", "传统艺术", "互动体验", "戏曲"],
+    },
+    {
+      id: "2",
+      title: "金华火腿品鉴之旅",
+      description:
+        "探访百年火腿制作工坊，了解金华火腿的历史渊源和制作工艺，品尝不同年份的火腿，感受'中国火腿之都'的独特魅力。",
+      category: "food",
+      image: "@/assets/images/recommendations/jinhua-ham.jpg",
+      rating: 4.9,
+      tags: ["金华火腿", "美食文化", "传统工艺", "品鉴"],
+    },
+    {
+      id: "3",
+      title: "双龙洞探险",
+      description:
+        "穿越神秘的地下溶洞，欣赏钟乳石奇观，体验漂流探险，感受大自然的鬼斧神工。专业导游全程陪同，确保安全刺激。",
+      category: "adventure",
+      image: "@/assets/images/recommendations/shuanglong-cave.jpg",
+      rating: 4.7,
+      tags: ["溶洞探险", "地质奇观", "漂流", "自然探索"],
+    },
+    {
+      id: "4",
+      title: "金华山徒步摄影",
+      description:
+        "登临金华山，探访九龙祠、寿圣寺等人文古迹，在专业摄影师指导下捕捉最美金华山景。含专业器材租赁和后期指导。",
+      category: "nature",
+      image: "@/assets/images/recommendations/jinhua-mountain.jpg",
+      rating: 4.6,
+      tags: ["户外运动", "摄影创作", "古迹", "自然风光"],
+    },
+    {
+      id: "5",
+      title: "兰溪诗路文化游",
+      description:
+        "沿着江南诗路，探访兰溪古城，参观胡公庙、登临诗画山，品茶听诗，感受千年文脉。包含专业文化导游讲解。",
+      category: "culture",
+      image: "@/assets/images/recommendations/lanxi-culture.jpg",
+      rating: 4.8,
+      tags: ["人文历史", "诗词文化", "古迹游览", "茶艺"],
+    },
+    {
+      id: "6",
+      title: "义乌小商品DIY",
+      description:
+        "走进义乌国际商贸城，参与手工艺品制作工坊，了解小商品产业发展历史，体验创意设计和制作过程。",
+      category: "culture",
+      image: "@/assets/images/recommendations/yiwu-market.jpg",
+      rating: 4.5,
+      tags: ["手工艺", "创意体验", "商贸文化", "DIY"],
+    },
+    {
+      id: "7",
+      title: "横店影视体验",
+      description:
+        "走进'中国好莱坞'，参观秦王宫、广州街等著名影视基地，体验戏份拍摄，与专业演员互动学习表演技巧。",
+      category: "culture",
+      image: "@/assets/images/recommendations/hengdian-studio.jpg",
+      rating: 4.7,
+      tags: ["影视文化", "互动表演", "场景体验", "娱乐"],
+    },
+    {
+      id: "8",
+      title: "磐安养生之旅",
+      description:
+        "深入磐安深山，采摘野生茶叶，体验传统制茶工艺，享受森林氧吧和温泉SPA，感受天然氧吧的滋养。",
+      category: "nature",
+      image: "@/assets/images/recommendations/panan-tea.jpg",
+      rating: 4.9,
+      tags: ["养生度假", "茶文化", "温泉", "自然疗养"],
+    },
+    {
+      id: "9",
+      title: "永康厨具文化游",
+      description:
+        "探访永康刀具博物馆，了解千年制刀工艺，参与厨师掌勺教学，体验专业厨具的魅力。含大师授课和美食品鉴。",
+      category: "food",
+      image: "@/assets/images/recommendations/yongkang-knife.jpg",
+      rating: 4.6,
+      tags: ["厨艺文化", "工艺传承", "美食制作", "技艺学习"],
+    },
+    {
+      id: "10",
+      title: "武义温泉度假",
+      description:
+        "享受武义百度温泉，体验不同温泉池的养生功效，参与温泉瑜伽课程，放松身心。含专业SPA护理服务。",
+      category: "nature",
+      image: "@/assets/images/recommendations/wuyi-hotspring.jpg",
+      rating: 4.8,
+      tags: ["温泉养生", "休闲度假", "瑜伽", "SPA"],
+    },
+    {
+      id: "11",
+      title: "浦江水果采摘",
+      description:
+        "走进浦江果园，亲手采摘当季水果，了解生态种植技术，参与果酒制作工艺，享受田园时光。含农家美食体验。",
+      category: "food",
+      image: "@/assets/images/recommendations/pujiang-fruit.jpg",
+      rating: 4.7,
+      tags: ["采摘体验", "田园生活", "农家乐", "美食"],
+    },
+    {
+      id: "12",
+      title: "东阳木雕工艺",
+      description:
+        "在东阳木雕大师指导下，了解木雕艺术的精髓，体验基础木雕技法，制作专属作品。含木雕博物馆参观和工具使用指导。",
+      category: "culture",
+      image: "@/assets/images/recommendations/dongyang-woodcarving.jpg",
+      rating: 4.9,
+      tags: ["木雕艺术", "非遗传承", "手工艺", "文化体验"],
+    },
+  ];
+};
+
+const handleRecommendationSelect = (recommendation: Recommendation) => {
+  selectedRecommendation.value = recommendation;
+};
+
+onMounted(fetchPersonalRecommendations);
+</script>
+
+<style scoped>
+/* Animations */
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Header animations */
+header h1,
+header p,
+header .flex-wrap {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+header p {
+  animation-delay: 0.2s;
+}
+
+header .flex-wrap {
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header hover effects */
+header img {
+  transition: transform 8s ease-out;
+  will-change: transform;
+}
+
+header:hover img {
+  transform: scale(1.1);
+}
+
+/* Glass effect hover */
+header .backdrop-blur-md {
+  transition: all 0.3s ease;
+}
+
+header:hover .backdrop-blur-md {
+  backdrop-filter: blur(8px);
+  background-color: rgba(255, 255, 255, 0.15);
+}
+</style>

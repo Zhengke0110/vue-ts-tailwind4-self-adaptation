@@ -73,6 +73,14 @@ const routes: RouteRecordRaw[] = [
     },
   },
   {
+    path: "/recommendations",
+    name: "recommendations",
+    component: () => import("@/views/Recommendations"),
+    meta: {
+      title: "好评榜",
+    },
+  },
+  {
     path: "/:pathMatch(.*)*",
     name: "not-found",
     component: () => import("@/views/Error.vue"),
