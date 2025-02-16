@@ -81,6 +81,14 @@ const routes: RouteRecordRaw[] = [
     },
   },
   {
+    path: "/custom",
+    name: "custom",
+    component: () => import("@/views/CustomView"),
+    meta: {
+      title: "行程定制",
+    },
+  },
+  {
     path: "/:pathMatch(.*)*",
     name: "not-found",
     component: () => import("@/views/Error.vue"),

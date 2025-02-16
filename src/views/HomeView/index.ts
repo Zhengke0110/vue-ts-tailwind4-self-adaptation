@@ -56,7 +56,7 @@ const features: Feature[] = [
   { id: 1, icon: "🏛️", name: "景点", route: "/attractions" },
   { id: 2, icon: "🍽️", name: "美食", route: "/food" },
   { id: 3, icon: "📈", name: "路线推荐", route: "/routes" },
-  { id: 4, icon: "⭐", name: "好评榜", route: "/rankings" },
+  { id: 4, icon: "⭐", name: "好评榜", route: "/recommendations" },
   { id: 5, icon: "✍️", name: "行程定制", route: "/custom" },
   { id: 6, icon: "🏛️", name: "人文景艺", route: "/culture" },
   { id: 7, icon: "🏠", name: "酒店民宿", route: "/hotels" },
