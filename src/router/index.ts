@@ -65,6 +65,14 @@ const routes: RouteRecordRaw[] = [
     },
   },
   {
+    path: "/shopping",
+    name: "shopping",
+    component: () => import("@/views/ShoppingView"),
+    meta: {
+      title: "特产好物",
+    },
+  },
+  {
     path: "/:pathMatch(.*)*",
     name: "not-found",
     component: () => import("@/views/Error.vue"),
