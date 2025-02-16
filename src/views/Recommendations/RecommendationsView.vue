@@ -110,16 +110,116 @@
       </header>
 
       <!-- Main Content -->
-      <main class="px-4 py-6 md:px-6 lg:px-8">
-        <div class="grid gap-6" :class="gridColumns">
-          <TransitionGroup name="fade" appear>
-            <RecommendationCard
-              v-for="recommendation in personalRecommendations"
-              :key="recommendation.id"
-              :recommendation="recommendation"
-              @click="handleRecommendationSelect(recommendation)"
-            />
-          </TransitionGroup>
+      <main class="relative px-4 py-4 md:px-6 lg:px-8 lg:py-8">
+        <div
+          :class="[
+            'w-full',
+            {
+              'lg:grid lg:grid-cols-[300px_1fr] lg:gap-8': deviceType.isDesktop, // 增加左侧宽度
+            },
+          ]"
+        >
+          <!-- Desktop Sidebar -->
+          <aside v-if="deviceType.isDesktop" class="lg:sticky lg:top-8">
+            <!-- 分类导航 -->
+            <div class="rounded-xl bg-white p-6 shadow-sm">
+              <h3 class="mb-4 text-lg font-semibold">推荐分类</h3>
+              <div class="flex flex-col space-y-2">
+                <button
+                  v-for="category in categories"
+                  :key="category.value"
+                  class="flex min-w-0 items-center space-x-3 rounded-lg px-4 py-3 transition-all hover:bg-purple-50"
+                  :class="
+                    selectedCategory === category.value
+                      ? 'bg-purple-50 text-purple-600'
+                      : 'text-gray-600'
+                  "
+                  @click="selectedCategory = category.value"
+                >
+                  <i :class="[category.icon, 'w-5 flex-shrink-0']"></i>
+                  <span class="flex-1 truncate text-left">{{
+                    category.label
+                  }}</span>
+                  <span class="flex-shrink-0 text-sm text-gray-400">{{
+                    getCategoryCount(category.value)
+                  }}</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 统计卡片 -->
+            <div
+              class="mt-6 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 p-6 text-white"
+            >
+              <h4 class="mb-3 truncate font-semibold">推荐概览</h4>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="rounded-lg bg-white/10 p-3 backdrop-blur-sm">
+                  <div class="truncate text-2xl font-bold">
+                    {{ personalRecommendations.length }}
+                  </div>
+                  <div class="truncate text-sm text-white/80">总推荐数</div>
+                </div>
+                <div class="rounded-lg bg-white/10 p-3 backdrop-blur-sm">
+                  <div class="truncate text-2xl font-bold">
+                    {{ averageRating }}
+                  </div>
+                  <div class="truncate text-sm text-white/80">平均评分</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 热门标签云 -->
+            <div class="mt-6 rounded-xl bg-white p-6 shadow-sm">
+              <h4 class="mb-3 truncate font-semibold text-gray-900">
+                热门标签
+              </h4>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  v-for="tag in popularTags"
+                  :key="tag.name"
+                  class="max-w-[150px] truncate rounded-full px-3 py-1 text-sm transition-all duration-300"
+                  :class="getTagStyle(tag.count)"
+                >
+                  {{ tag.name }}
+                </span>
+              </div>
+            </div>
+          </aside>
+
+          <!-- Content Area -->
+          <div class="flex-1">
+            <!-- Mobile/Tablet Categories -->
+            <div v-if="!deviceType.isDesktop" class="mb-6 overflow-x-auto">
+              <div class="flex space-x-2 pb-2">
+                <button
+                  v-for="category in categories"
+                  :key="category.value"
+                  class="flex items-center space-x-2 rounded-full px-4 py-2 text-sm whitespace-nowrap transition-colors"
+                  :class="
+                    selectedCategory === category.value
+                      ? 'bg-purple-600 text-white'
+                      : 'bg-white text-gray-600'
+                  "
+                  @click="selectedCategory = category.value"
+                >
+                  <i :class="category.icon"></i>
+                  <span>{{ category.label }}</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Grid Layout -->
+            <div class="grid gap-6" :class="gridColumns">
+              <TransitionGroup name="fade" appear>
+                <RecommendationCard
+                  v-for="recommendation in filteredRecommendations"
+                  :key="recommendation.id"
+                  :recommendation="recommendation"
+                  @click="handleRecommendationSelect(recommendation)"
+                />
+              </TransitionGroup>
+            </div>
+          </div>
         </div>
       </main>
 
@@ -185,8 +285,8 @@
 import { ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { deviceType } from "@/utils/flexible";
-import type { Recommendation } from "./index";
-import { categoryLabel, Banner } from "./index";
+import type { CategoryType, Recommendation } from "./index";
+import { categoryLabel, Banner, categories } from "./index";
 import RecommendationCard from "./components/RecommendationCard.vue";
 import RecommendationDetailModal from "./components/RecommendationDetailModal.vue";
 import {
@@ -354,6 +454,59 @@ const handleRecommendationSelect = (recommendation: Recommendation) => {
 };
 
 onMounted(fetchPersonalRecommendations);
+
+// 新增状态和计算属性
+const selectedCategory = ref<CategoryType>("all");
+
+const filteredRecommendations = computed(() => {
+  if (selectedCategory.value === "all") {
+    return personalRecommendations.value;
+  }
+  return personalRecommendations.value.filter(
+    (item) => item.category === selectedCategory.value,
+  );
+});
+
+// 计算平均评分
+const averageRating = computed(() => {
+  const avg =
+    personalRecommendations.value.reduce((acc, curr) => acc + curr.rating, 0) /
+    personalRecommendations.value.length;
+  return avg.toFixed(1);
+});
+
+// 获取分类数量
+const getCategoryCount = (category: CategoryType) => {
+  if (category === "all") return personalRecommendations.value.length;
+  return personalRecommendations.value.filter(
+    (item) => item.category === category,
+  ).length;
+};
+
+// 计算热门标签
+const popularTags = computed(() => {
+  const tagCount = new Map<string, number>();
+  personalRecommendations.value.forEach((item) => {
+    item.tags.forEach((tag) => {
+      tagCount.set(tag, (tagCount.get(tag) || 0) + 1);
+    });
+  });
+  return Array.from(tagCount.entries())
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 12);
+});
+
+// 标签样式
+const getTagStyle = (count: number) => {
+  const max = Math.max(...popularTags.value.map((t) => t.count));
+  const intensity = (count / max) * 100;
+  return {
+    "bg-purple-50 text-purple-600": intensity < 33,
+    "bg-purple-100 text-purple-700": intensity >= 33 && intensity < 66,
+    "bg-purple-200 text-purple-800": intensity >= 66,
+  };
+};
 </script>
 
 <style scoped>
@@ -413,5 +566,50 @@ header .backdrop-blur-md {
 header:hover .backdrop-blur-md {
   backdrop-filter: blur(8px);
   background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* 添加桌面端特有的样式 */
+@media (min-width: 1024px) {
+  .lg\:sticky {
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+    width: 300px; /* 确保宽度固定 */
+  }
+
+  /* 防止内容溢出 */
+  .truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* 确保弹性布局项目不会收缩 */
+  .flex-shrink-0 {
+    flex-shrink: 0;
+  }
+
+  /* 左侧边栏hover效果 */
+  .lg\:sticky button:hover {
+    transform: translateX(4px);
+  }
+
+  /* 统计卡片渐变动画 */
+  .from-purple-500.to-indigo-600 {
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease infinite;
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 </style>

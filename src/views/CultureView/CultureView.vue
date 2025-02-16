@@ -117,19 +117,19 @@
           :class="[
             'w-full',
             {
-              'lg:grid lg:grid-cols-[280px_1fr] lg:gap-8': deviceType.isDesktop,
+              'lg:grid lg:grid-cols-[300px_1fr] lg:gap-8': deviceType.isDesktop,
             },
           ]"
         >
           <!-- Desktop Sidebar -->
           <aside v-if="deviceType.isDesktop" class="lg:sticky lg:top-8">
             <div class="rounded-xl bg-white p-6 shadow-sm">
-              <h3 class="mb-4 text-lg font-semibold">文化分类</h3>
+              <h3 class="mb-4 truncate text-lg font-semibold">文化分类</h3>
               <div class="flex flex-col space-y-2">
                 <button
                   v-for="category in categories"
                   :key="category.value"
-                  class="flex items-center space-x-3 rounded-lg px-4 py-3 transition-all hover:bg-indigo-50"
+                  class="flex min-w-0 items-center space-x-3 rounded-lg px-4 py-3 transition-all hover:bg-indigo-50"
                   :class="
                     selectedCategory === category.value
                       ? 'bg-indigo-50 text-indigo-500'
@@ -137,9 +137,11 @@
                   "
                   @click="selectedCategory = category.value"
                 >
-                  <i :class="[category.icon, 'w-5']"></i>
-                  <span class="flex-1 text-left">{{ category.label }}</span>
-                  <span class="text-sm text-gray-400">{{
+                  <i :class="[category.icon, 'w-5 flex-shrink-0']"></i>
+                  <span class="flex-1 truncate text-left">{{
+                    category.label
+                  }}</span>
+                  <span class="flex-shrink-0 text-sm text-gray-400">{{
                     getCategoryCount(category.value)
                   }}</span>
                 </button>
@@ -304,9 +306,6 @@ import {
   MenuButton,
   MenuItems,
   MenuItem,
-  Tab,
-  TabGroup,
-  TabList,
 } from "@headlessui/vue";
 
 const router = useRouter();
@@ -315,11 +314,6 @@ const searchQuery = ref("");
 const selectedCategory = ref("all");
 const activeCategory = ref("all");
 const sortOrder = ref<"default" | "rating" | "reviews">("default");
-
-// 处理移动端标签切换
-const handleTabChange = (index: number) => {
-  activeCategory.value = categories[index].value;
-};
 
 const categories = [
   { value: "all", label: "全部", icon: "fas fa-th-large" },
@@ -547,5 +541,32 @@ img {
   backface-visibility: hidden;
   transform: translateZ(0);
   will-change: transform, opacity;
+}
+
+/* 添加桌面端特有的样式 */
+@media (min-width: 1024px) {
+  .lg\:sticky {
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+    width: 300px; /* 确保宽度固定 */
+  }
+
+  /* 防止内容溢出 */
+  .truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* 确保弹性布局项目不会收缩 */
+  .flex-shrink-0 {
+    flex-shrink: 0;
+  }
+
+  /* 左侧边栏hover效果 */
+  .lg\:sticky button:hover {
+    transform: translateX(4px);
+  }
 }
 </style>

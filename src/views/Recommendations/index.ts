@@ -11,6 +11,28 @@ export type Recommendation = {
   tags: string[];
 };
 
+export type CategoryType = "all" | "culture" | "nature" | "food" | "adventure";
+
+export const categories = [
+  { value: "all" as CategoryType, label: "全部推荐", icon: "fas fa-th-large" },
+  {
+    value: "culture" as CategoryType,
+    label: "文化体验",
+    icon: "fas fa-theater-masks",
+  },
+  {
+    value: "nature" as CategoryType,
+    label: "自然探索",
+    icon: "fas fa-mountain",
+  },
+  { value: "food" as CategoryType, label: "美食之旅", icon: "fas fa-utensils" },
+  {
+    value: "adventure" as CategoryType,
+    label: "探险活动",
+    icon: "fas fa-compass",
+  },
+] as const;
+
 export const categoryLabel = {
   culture: "文化体验",
   nature: "自然探索",
