@@ -120,7 +120,7 @@
                 <button
                   v-for="category in categories"
                   :key="category.value"
-                  class="flex items-center space-x-2 rounded-full px-4 py-2 text-sm whitespace-nowrap transition-colors"
+                  class="inline-flex shrink-0 items-center space-x-2 rounded-full px-4 py-2 text-sm whitespace-nowrap transition-colors"
                   :class="
                     activeCategory === category.value
                       ? 'bg-orange-500 text-white'
@@ -136,7 +136,7 @@
 
             <!-- 商品网格 -->
             <div
-              class="grid gap-4 md:gap-6"
+              class="grid gap-4 sm:gap-6 lg:gap-8"
               :class="{
                 'grid-cols-1': deviceType.isMobile,
                 'grid-cols-2': deviceType.isTablet,
@@ -147,9 +147,10 @@
                 <div
                   v-for="item in filteredItems"
                   :key="item.id"
-                  class="group relative overflow-hidden rounded-xl bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+                  class="group relative flex flex-col overflow-hidden rounded-xl bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
                   @click="handleItemClick(item)"
                 >
+                  <!-- 图片容器 -->
                   <div class="relative aspect-[4/3] overflow-hidden">
                     <img
                       :src="item.image"
@@ -160,35 +161,42 @@
                       class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                     ></div>
                   </div>
-                  <div class="p-4">
-                    <div class="mb-2 flex items-center justify-between">
+
+                  <!-- 内容区域 -->
+                  <div class="flex flex-1 flex-col p-4">
+                    <div class="mb-2 flex items-start justify-between gap-2">
                       <h3
-                        class="font-medium text-gray-900 transition-colors duration-300 group-hover:text-orange-500"
+                        class="truncate font-medium text-gray-900 transition-colors duration-300 group-hover:text-orange-500"
                       >
                         {{ item.title }}
                       </h3>
                       <span
-                        class="rounded-full bg-orange-100 px-2 py-1 text-xs text-orange-500"
+                        class="flex-shrink-0 rounded-full bg-orange-100 px-2 py-1 text-xs text-orange-500"
                       >
                         ¥{{ item.price }}
                       </span>
                     </div>
-                    <p class="mb-3 line-clamp-2 text-sm text-gray-500">
+
+                    <p class="mb-3 line-clamp-2 flex-1 text-sm text-gray-500">
                       {{ item.description }}
                     </p>
-                    <div class="mb-3 flex flex-wrap gap-2">
+
+                    <!-- 标签区域 -->
+                    <div class="mb-3 flex flex-wrap gap-1.5">
                       <span
                         v-for="tag in item.tags"
                         :key="tag"
-                        class="rounded-full bg-gray-100 px-2 py-1 text-xs text-gray-600"
+                        class="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600"
                       >
                         {{ tag }}
                       </span>
                     </div>
+
+                    <!-- 底部信息 -->
                     <div class="flex items-center justify-between">
                       <div class="flex items-center space-x-1">
                         <StarRating :rating="item.rating" />
-                        <span class="text-sm text-gray-500"
+                        <span class="text-xs text-gray-500"
                           >{{ item.reviews }}条点评</span
                         >
                       </div>
@@ -478,5 +486,40 @@ header:hover .backdrop-blur-md {
 
 .drop-shadow-lg {
   filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
+}
+
+/* 优化卡片样式 */
+.group {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* 优化卡片阴影过渡 */
+.group {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.group:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* 优化图片加载 */
+img {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* 添加卡片内容渐变动画 */
+.group:hover .text-gray-900 {
+  color: #f97316;
+}
+
+/* 优化标签样式 */
+.rounded-full {
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 </style>

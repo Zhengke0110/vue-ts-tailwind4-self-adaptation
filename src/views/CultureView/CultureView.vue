@@ -151,33 +151,27 @@
           <div class="flex-1">
             <!-- Mobile/Tablet Categories -->
             <div v-if="!deviceType.isDesktop" class="mb-6 md:mb-8">
-              <TabGroup @change="handleTabChange">
-                <TabList class="flex space-x-2 overflow-x-auto pb-2">
-                  <Tab
-                    v-for="category in categories"
-                    :key="category.value"
-                    v-slot="{ selected }"
-                    as="template"
-                  >
-                    <button
-                      class="flex items-center space-x-2 rounded-full px-4 py-2 text-sm whitespace-nowrap transition-colors md:text-base"
-                      :class="
-                        selected
-                          ? 'bg-indigo-500 text-white'
-                          : 'bg-white text-gray-600'
-                      "
-                    >
-                      <i :class="category.icon" class="mr-2"></i>
-                      <span>{{ category.label }}</span>
-                    </button>
-                  </Tab>
-                </TabList>
-              </TabGroup>
+              <div class="hide-scrollbar flex space-x-2 overflow-x-auto pb-2">
+                <button
+                  v-for="category in categories"
+                  :key="category.value"
+                  class="inline-flex shrink-0 items-center space-x-2 rounded-full px-4 py-2 text-sm whitespace-nowrap transition-colors"
+                  :class="
+                    activeCategory === category.value
+                      ? 'bg-indigo-500 text-white'
+                      : 'bg-white text-gray-600'
+                  "
+                  @click="activeCategory = category.value"
+                >
+                  <i :class="category.icon"></i>
+                  <span>{{ category.label }}</span>
+                </button>
+              </div>
             </div>
 
             <!-- Culture Grid -->
             <div
-              class="grid gap-4 md:gap-6"
+              class="grid gap-4 sm:gap-6 lg:gap-8"
               :class="{
                 'grid-cols-1': deviceType.isMobile,
                 'grid-cols-2': deviceType.isTablet,
@@ -188,7 +182,7 @@
                 <div
                   v-for="item in filteredItems"
                   :key="item.id"
-                  class="group relative overflow-hidden rounded-xl bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+                  class="group relative flex flex-col overflow-hidden rounded-xl bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
                   @click="handleItemClick(item)"
                 >
                   <div class="relative aspect-[4/3] overflow-hidden">
@@ -201,26 +195,26 @@
                       class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                     ></div>
                   </div>
-                  <div class="p-4">
-                    <div class="mb-2 flex items-center justify-between">
+                  <div class="flex flex-1 flex-col p-4">
+                    <div class="mb-2 flex items-start justify-between gap-2">
                       <h3
-                        class="font-medium text-gray-900 group-hover:text-indigo-500"
+                        class="truncate font-medium text-gray-900 transition-colors duration-300 group-hover:text-indigo-500"
                       >
                         {{ item.title }}
                       </h3>
                       <span
-                        class="rounded-full bg-indigo-100 px-2 py-1 text-xs text-indigo-500"
+                        class="flex-shrink-0 rounded-full bg-indigo-100 px-2 py-1 text-xs text-indigo-500"
                       >
                         {{ getCategoryLabel(item.category) }}
                       </span>
                     </div>
-                    <p class="mb-3 line-clamp-2 text-sm text-gray-500">
+                    <p class="mb-3 line-clamp-2 flex-1 text-sm text-gray-500">
                       {{ item.description }}
                     </p>
                     <div class="flex items-center justify-between">
                       <div class="flex items-center space-x-1">
                         <StarRating :rating="item.rating" />
-                        <span class="text-sm text-gray-500"
+                        <span class="text-xs text-gray-500"
                           >{{ item.reviews }}条点评</span
                         >
                       </div>
@@ -492,5 +486,66 @@ header .flex-wrap {
 /* 优化过渡动画 */
 .fade-move {
   transition: transform 0.6s ease-out;
+}
+
+/* 优化卡片样式 */
+.group {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: transform;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.group:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* 优化图片加载性能 */
+img {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* 优化移动端滚动条 */
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* 优化文字溢出 */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 优化移动端触摸体验 */
+@media (hover: none) {
+  .group:hover {
+    transform: none;
+  }
+}
+
+/* 优化动画性能 */
+.fade-move,
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: transform, opacity;
 }
 </style>
