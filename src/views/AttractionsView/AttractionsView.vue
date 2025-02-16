@@ -228,7 +228,11 @@
               <!-- Card Image -->
               <div class="relative aspect-[4/3] overflow-hidden">
                 <img
-                  :src="attraction.image"
+                  :src="
+                    Array.isArray(attraction.image)
+                      ? attraction.image[0]
+                      : attraction.image
+                  "
                   :alt="attraction.title"
                   class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />

@@ -431,6 +431,7 @@ const toggleFavorite = (food: Food) => {
 };
 
 const isFavorite = (food: Food) => {
+  console.log("isFavorite", food);
   // 实现收藏状态检查
   return false;
 };

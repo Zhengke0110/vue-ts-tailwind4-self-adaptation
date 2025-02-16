@@ -102,7 +102,7 @@
           v-for="(comment, index) in comments"
           :key="comment.id"
           class="comment-card transform rounded-lg bg-white shadow-sm transition-all duration-300"
-          :class="getCommentCardClasses(index)"
+          :class="getCommentCardClasses()"
           :style="getCommentCardStyles(index)"
         >
           <!-- 评论卡片头部 -->
@@ -395,7 +395,7 @@ const getMoveClass = computed(() => {
 });
 
 // 评论卡片样式计算
-const getCommentCardClasses = (index: number) => ({
+const getCommentCardClasses = () => ({
   "hover:-translate-y-1 hover:shadow-md": !deviceType.value.isMobile,
   "active:scale-98": deviceType.value.isMobile,
   "animate-fade-in-up": true,

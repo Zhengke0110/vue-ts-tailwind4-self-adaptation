@@ -393,6 +393,7 @@ const toggleFavorite = (item: CulturalNote) => {
 };
 
 const isFavorite = (item: CulturalNote) => {
+  console.log("isFavorite", item);
   // 实现收藏状态检查
   return false;
 };

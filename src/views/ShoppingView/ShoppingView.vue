@@ -359,6 +359,7 @@ const toggleFavorite = (item: ShoppingItem) => {
 };
 
 const isFavorite = (item: ShoppingItem) => {
+  console.log("isFavorite", item);
   // 实现收藏状态检查
   return false;
 };

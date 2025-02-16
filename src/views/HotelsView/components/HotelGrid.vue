@@ -138,6 +138,7 @@ const toggleFavorite = (hotel: Hotel) => {
 };
 
 const isFavorite = (hotel: Hotel) => {
+  console.log("isFavorite", hotel);
   // 实现收藏状态检查
   return false;
 };
