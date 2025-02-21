@@ -1,13 +1,6 @@
 import RouteDetail from "./RouteDetail.vue";
 export default RouteDetail;
 
-import HomeBanner from "@/assets/images/route/banner.png";
-import cityWall from "@/assets/images/route/jinhua-city-wall.png";
-import dragonCave from "@/assets/images/route/dragon-cave.png";
-import hamMuseum from "@/assets/images/route/ham-museum.png";
-import wujuArt from "@/assets/images/route/wuju-art.png";
-import lanhuaTemple from "@/assets/images/route/lanhua-temple.png";
-import foodStreet from "@/assets/images/route/food-street.png";
 
 // 类型定义
 interface Spot {
@@ -96,7 +89,7 @@ export const mockRouteData: TravelRoute = {
   title: "婺城文化底蕴二日游",
   description:
     "深度体验金华文化与美食，探索古城风韵，品尝地道美食，感受千年历史文化的魅力",
-  coverImage: HomeBanner,
+  coverImage: "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E6%96%87%E5%8C%96/%E9%87%91%E5%8D%8E%E5%8E%86%E5%8F%B2%E5%8F%A4%E8%BF%B9/%E5%A9%BA%E5%B7%9E%E5%8F%A4%E5%9F%8E-1.jpg",
   duration: "2天1晚",
   distance: "约30公里",
   price: "￥398起",
@@ -120,7 +113,7 @@ export const mockRouteData: TravelRoute = {
           duration: "2小时",
           description:
             "始建于南宋，是江南地区保存最完整的古城墙之一。可以登城俯瞰金华古城全貌，感受千年古城的历史沧桑。",
-          image: cityWall,
+          image: "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E6%96%87%E5%8C%96/%E9%87%91%E5%8D%8E%E5%8F%A4%E5%9F%8E%E5%A2%99.png",
           rating: 4.5,
           reviews: 128,
           openTime: "08:00-17:30",
@@ -133,7 +126,7 @@ export const mockRouteData: TravelRoute = {
           duration: "3小时",
           description:
             "国家4A级景区，以溶洞奇观和佛教文化为特色。洞内钟乳石造型奇特，还有众多佛教造像和壁画。",
-          image: dragonCave,
+          image: "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E7%8E%A9/%E5%8F%8C%E9%BE%99%E6%B4%9E/%E5%8F%8C%E9%BE%99%E6%B4%9E-4.jpg",
           rating: 4.7,
           reviews: 256,
           openTime: "08:30-16:30",
@@ -142,16 +135,16 @@ export const mockRouteData: TravelRoute = {
         },
         {
           id: "3",
-          name: "兰花禅寺",
+          name: "黄大仙宫",
           duration: "1.5小时",
           description:
-            "始建于唐代的千年古刹，以精美的唐代建筑和兰花文化闻名，春季可赏名贵兰花。",
-          image: lanhuaTemple,
+            "道教洞天福地，集自然风光、凉爽气候、丰富生态与深厚文化底蕴于一体，是避暑、观光、朝圣的绝佳去处，奇石怪立，湖光山色，宛如人间仙境。",
+          image: "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E7%8E%A9/%E9%87%91%E5%8D%8E%E6%B8%B8/%E9%BB%84%E5%A4%A7%E4%BB%99%E5%AE%AB.png",
           rating: 4.6,
           reviews: 189,
           openTime: "07:30-17:00",
-          ticket: "￥30/人",
-          location: "浙江省金华市婺城区兰溪街",
+          ticket: "￥15/人",
+          location: "金华市婺城区双龙景区内",
         },
       ],
     },
@@ -165,7 +158,7 @@ export const mockRouteData: TravelRoute = {
           duration: "1.5小时",
           description:
             "了解金华火腿的历史文化和制作工艺，可以参与火腿品鉴，还有互动制作体验。",
-          image: hamMuseum,
+          image: "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E6%96%87%E5%8C%96/%E9%87%91%E5%8D%8E%E7%81%AB%E8%85%BF%E6%96%87%E5%8C%96/%E7%81%AB%E8%85%BF%E6%96%87%E5%8C%96-2.jpg",
           rating: 4.3,
           reviews: 89,
           openTime: "09:00-16:30",
@@ -178,7 +171,7 @@ export const mockRouteData: TravelRoute = {
           duration: "2小时",
           description:
             "欣赏传统婺剧表演，感受非遗文化魅力。可以近距离了解婺剧服装、道具和化妆过程。",
-          image: wujuArt,
+          image: "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E6%96%87%E5%8C%96/%E5%A9%BA%E5%89%A7%E8%A1%A8%E6%BC%94%E8%89%BA%E6%9C%AF/%E5%A9%BA%E5%89%A7-3.jpg",
           rating: 4.6,
           reviews: 167,
           openTime: "10:00-21:00",
@@ -191,7 +184,7 @@ export const mockRouteData: TravelRoute = {
           duration: "2.5小时",
           description:
             "汇集金华特色小吃，可以品尝火腿炖汤、麦糕、咸菜等地道美食。",
-          image: foodStreet,
+          image: "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E7%8E%A9/%E9%87%91%E5%8D%8E%E6%B8%B8/%E8%80%81%E8%A1%97%E7%BE%8E%E9%A3%9F%E6%96%87%E5%8C%96%E5%8C%BA.png",
           rating: 4.8,
           reviews: 312,
           openTime: "全天",
@@ -294,15 +287,6 @@ export const mockRouteData: TravelRoute = {
   ],
 };
 
-export {
-  HomeBanner,
-  cityWall,
-  dragonCave,
-  hamMuseum,
-  wujuArt,
-  lanhuaTemple,
-  foodStreet,
-};
 
 // 确保导出类型定义
 export type {

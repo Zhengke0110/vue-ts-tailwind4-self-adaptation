@@ -24,7 +24,8 @@ export const routes: Route[] = [
       "探索金华山的自然风光和历史文化，体验千年古刹与自然奇观的完美融合",
     duration: "1-2天",
     difficulty: "moderate",
-    coverImage: "@/assets/images/routes/jinhua-mountain.jpg",
+    coverImage:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E7%8E%A9/%E9%87%91%E5%8D%8E%E5%B1%B1/%E9%87%91%E5%8D%8E%E5%B1%B1.jpg",
     attractions: [
       "金华山国家森林公园",
       "仙华山",
@@ -48,7 +49,8 @@ export const routes: Route[] = [
     description: "深入了解东阳传统木雕工艺，感受非物质文化遗产的魅力",
     duration: "半天",
     difficulty: "easy",
-    coverImage: "@/assets/images/routes/dongyang-woodcarving.jpg",
+    coverImage:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E4%B8%9C%E9%98%B3/%E6%99%AF%E7%82%B9/%E4%B8%AD%E5%9B%BD%E6%9C%A8%E9%9B%95%E6%96%87%E5%8C%96%E5%8D%9A%E8%A7%88%E5%9F%8E.png",
     attractions: [
       "东阳木雕博物馆",
       "东阳木雕城",
@@ -72,7 +74,8 @@ export const routes: Route[] = [
     description: "走进亚洲最大的影视基地，感受影视文化魅力",
     duration: "2-3天",
     difficulty: "easy",
-    coverImage: "@/assets/images/routes/hengdian.jpg",
+    coverImage:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E4%B8%9C%E9%98%B3/%E6%99%AF%E7%82%B9/%E6%A8%AA%E5%BA%97%E5%BD%B1%E8%A7%86%E5%9F%8E.png",
     attractions: [
       "秦王宫",
       "广州街·香港街",
@@ -96,7 +99,8 @@ export const routes: Route[] = [
     description: "探访兰江两岸风光，体验诗画江南的独特韵味",
     duration: "1天",
     difficulty: "easy",
-    coverImage: "@/assets/images/routes/lanxi.jpg",
+    coverImage:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%85%B0%E6%BA%AA/%E6%99%AF%E7%82%B9/%E5%85%B0%E6%B1%9F%E9%A3%8E%E6%99%AF%E5%8C%BA.png",
     attractions: [
       "诗画江南文化园",
       "兰江风景区",
@@ -120,7 +124,8 @@ export const routes: Route[] = [
     description: "享受天然温泉，体验养生休闲度假",
     duration: "2天",
     difficulty: "easy",
-    coverImage: "@/assets/images/routes/wuyi-spa.jpg",
+    coverImage:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E7%8E%A9/%E9%87%91%E5%8D%8E%E6%B8%B8/%E6%AD%A6%E5%99%A8%E6%B8%A9%E6%B3%89.png",
     attractions: [
       "武义温泉",
       "唐风温泉",
@@ -144,7 +149,8 @@ export const routes: Route[] = [
     description: '探索"中国五金之都"的产业文化与创新发展',
     duration: "1天",
     difficulty: "easy",
-    coverImage: "@/assets/images/routes/yongkang-hardware.jpg",
+    coverImage:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E7%8E%A9/%E9%87%91%E5%8D%8E%E6%B8%B8/%E6%B0%B8%E5%BA%B7%E4%BA%94%E9%87%91%E5%9F%8E.png",
     attractions: [
       "中国五金博物馆",
       "永康五金城",
@@ -168,7 +174,8 @@ export const routes: Route[] = [
     description: "探访浙江最美生态县，体验原始自然风光",
     duration: "2天",
     difficulty: "challenging",
-    coverImage: "@/assets/images/routes/panan-nature.jpg",
+    coverImage:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E7%A3%90%E5%AE%89/%E6%99%AF%E7%82%B9/%E7%9B%98%E9%BE%99%E6%A2%AF%E7%94%B0.png",
     attractions: [
       "天华山景区",
       "深溪峡谷",
@@ -192,7 +199,8 @@ export const routes: Route[] = [
     description: '探索"中国水晶之都"的璀璨文化',
     duration: "1天",
     difficulty: "easy",
-    coverImage: "@/assets/images/routes/pujiang-crystal.jpg",
+    coverImage:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E7%8E%A9/%E9%87%91%E5%8D%8E%E6%B8%B8/%E6%B5%A6%E6%B1%9F%E6%B0%B4%E6%99%B6.png",
     attractions: [
       "浦江水晶博物馆",
       "水晶艺术街",
@@ -216,7 +224,8 @@ export const routes: Route[] = [
     description: "走进世界最大小商品市场，感受国际贸易魅力",
     duration: "1-2天",
     difficulty: "easy",
-    coverImage: "@/assets/images/routes/yiwu-market.jpg",
+    coverImage:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E4%B9%B0/%E4%B9%89%E4%B9%8C%E5%B0%8F%E5%95%86%E5%93%81/%E5%95%86%E5%93%81-3.jpg",
     attractions: [
       "义乌国际商贸城",
       "宾王商业街",
@@ -240,7 +249,8 @@ export const routes: Route[] = [
     description: "探访千年古城，感受历史文化底蕴",
     duration: "1天",
     difficulty: "easy",
-    coverImage: "@/assets/images/routes/wuzhou-oldtown.jpg",
+    coverImage:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E7%8E%A9/%E9%87%91%E5%8D%8E%E6%B8%B8/%E5%A9%BA%E5%B7%9E%E5%8F%A4%E5%9F%8E.png",
     attractions: [
       "婺州古城墙",
       "双溪书院",

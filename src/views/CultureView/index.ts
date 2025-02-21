@@ -32,7 +32,7 @@ export const culturalNotes: CulturalNote[] = [
     description: "浙江省非物质文化遗产，独特的地方戏曲艺术形式",
     detailDescription:
       "婺剧是流行于浙江金华及周边地区的地方戏曲剧种，具有鲜明的地方特色和艺术魅力。其表演风格细腻传神，唱腔优美动人。",
-    image: "@/assets/images/culture/wuju.jpg",
+    image: "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E6%96%87%E5%8C%96/%E5%A9%BA%E5%89%A7%E8%A1%A8%E6%BC%94%E8%89%BA%E6%9C%AF/%E5%A9%BA%E5%89%A7-4.jpg",
     category: "art",
     rating: 4.7,
     reviews: 256,
@@ -50,7 +50,7 @@ export const culturalNotes: CulturalNote[] = [
     description: "国家级非物质文化遗产，精湛的传统雕刻工艺",
     detailDescription:
       "东阳木雕是中国传统雕刻艺术的代表之一，以其精湛的技艺和丰富的文化内涵著称。",
-    image: "@/assets/images/culture/mudiao.jpg",
+    image: "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E6%96%87%E5%8C%96/%E9%9D%9E%E7%89%A9%E8%B4%A8%E6%96%87%E5%8C%96%E9%81%97%E4%BA%A7/%E4%B8%9C%E9%98%B3%E6%9C%A8%E9%9B%95.jpg",
     category: "heritage",
     rating: 4.8,
     reviews: 128,
@@ -68,7 +68,7 @@ export const culturalNotes: CulturalNote[] = [
     description: "中国四大火腿之一，承载着深厚的饮食文化历史",
     detailDescription:
       "金华火腿是中国传统名产，以其独特的制作工艺和美味的口感闻名。",
-    image: "@/assets/images/culture/huotui-culture.jpg",
+    image: "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E6%96%87%E5%8C%96/%E9%9D%9E%E7%89%A9%E8%B4%A8%E6%96%87%E5%8C%96%E9%81%97%E4%BA%A7/%E9%87%91%E5%8D%8E%E7%81%AB%E8%85%BF%E8%85%8C%E5%88%B6%E6%8A%80%E8%89%BA.jpg",
     category: "history",
     rating: 4.5,
     reviews: 98,
@@ -86,7 +86,7 @@ export const culturalNotes: CulturalNote[] = [
     description: "明清时期著名瓷器产地，工艺精湛，风格独特",
     detailDescription:
       "婺州瓷器是浙江省金华市的传统工艺品，以其精湛的技艺和独特的风格著称。",
-    image: "@/assets/images/culture/wuzhou-porcelain.jpg",
+    image: "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E6%96%87%E5%8C%96/%E9%9D%9E%E7%89%A9%E8%B4%A8%E6%96%87%E5%8C%96%E9%81%97%E4%BA%A7/%E5%A9%BA%E5%B7%9E%E7%AA%91%E9%99%B6%E7%93%B7%E7%83%A7%E5%88%B6%E6%8A%80%E8%89%BA.jpg",
     category: "heritage",
     rating: 4.6,
     reviews: 167,
@@ -104,7 +104,7 @@ export const culturalNotes: CulturalNote[] = [
     description: "传统工艺美术，融合书画艺术的扇面创作",
     detailDescription:
       "兰溪扇画是浙江省兰溪市的传统工艺美术，以其精美的扇面书画艺术著称。",
-    image: "@/assets/images/culture/lanxi-fan.jpg",
+    image: "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E6%96%87%E5%8C%96/%E6%89%87%E7%94%BB.png",
     category: "art",
     rating: 4.4,
     reviews: 89,
@@ -122,7 +122,7 @@ export const culturalNotes: CulturalNote[] = [
     description: "历史文化名村，保存完好的明清建筑群",
     detailDescription:
       "义乌南官古村是浙江省义乌市的历史文化名村，以其保存完好的明清建筑群和丰富的历史文化内涵著称。",
-    image: "@/assets/images/culture/nanguan-village.jpg",
+    image: "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E4%B9%89%E4%B9%8C/%E6%99%AF%E7%82%B9/%E4%B9%89%E4%B9%8C%E5%8D%97%E5%AE%98%E5%8F%A4%E6%9D%91.png",
     category: "history",
     rating: 4.7,
     reviews: 145,
@@ -140,7 +140,7 @@ export const culturalNotes: CulturalNote[] = [
     description: "独具特色的民间艺术，寓意美好吉祥",
     detailDescription:
       "浦江剪纸是浙江省浦江县的传统民间艺术，以其独特的剪纸技艺和美好的寓意著称。",
-    image: "@/assets/images/culture/pujiang-paper-cutting.jpg",
+    image: "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E6%96%87%E5%8C%96/%E9%9D%9E%E7%89%A9%E8%B4%A8%E6%96%87%E5%8C%96%E9%81%97%E4%BA%A7/%E6%B5%A6%E6%B1%9F%E5%89%AA%E7%BA%B8.jpg",
     category: "heritage",
     rating: 4.5,
     reviews: 112,
@@ -158,7 +158,7 @@ export const culturalNotes: CulturalNote[] = [
     description: "道教名山，历史文化积淀深厚",
     detailDescription:
       "金华山是浙江省金华市的道教名山，以其深厚的历史文化积淀和独特的自然风光著称。",
-    image: "@/assets/images/culture/jinhua-mountain.jpg",
+    image: "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E7%8E%A9/%E9%87%91%E5%8D%8E%E5%B1%B1/%E9%87%91%E5%8D%8E%E5%B1%B1.jpg",
     category: "history",
     rating: 4.8,
     reviews: 234,
@@ -176,7 +176,7 @@ export const culturalNotes: CulturalNote[] = [
     description: "传统民俗活动，展现浓郁的地方特色",
     detailDescription:
       "武义张灯结彩是浙江省武义县的传统民俗活动，以其浓郁的地方特色和热闹的节庆氛围著称。",
-    image: "@/assets/images/culture/wuyi-lanterns.jpg",
+    image: "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E7%8E%A9/%E6%AD%A6%E4%B9%89%E5%BC%A0%E7%81%AF%E7%BB%93%E5%BD%A9.png",
     category: "heritage",
     rating: 4.3,
     reviews: 78,
@@ -194,7 +194,7 @@ export const culturalNotes: CulturalNote[] = [
     description: "独特的山区民间音乐艺术形式",
     detailDescription:
       "磐安民间音乐是浙江省磐安县的传统民间艺术，以其独特的山区音乐风格和丰富的文化内涵著称。",
-    image: "@/assets/images/culture/panan-music.jpg",
+    image: "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E6%96%87%E5%8C%96/%E7%A3%90%E5%AE%89%E6%B0%91%E9%97%B4%E9%9F%B3%E4%B9%90.png",
     category: "art",
     rating: 4.4,
     reviews: 92,
@@ -212,7 +212,7 @@ export const culturalNotes: CulturalNote[] = [
     description: "传统手工艺聚集地，展现工匠精神",
     detailDescription:
       "永康百工坊是浙江省永康市的传统手工艺聚集地，以其丰富的手工艺品和工匠精神著称。",
-    image: "@/assets/images/culture/yongkang-crafts.jpg",
+    image: "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E6%B0%B8%E5%BA%B7/%E6%99%AF%E7%82%B9/%E6%B0%B8%E5%BA%B7%E7%99%BE%E5%B7%A5%E5%9D%8A.png",
     category: "heritage",
     rating: 4.6,
     reviews: 156,
@@ -230,7 +230,7 @@ export const culturalNotes: CulturalNote[] = [
     description: "精美的传统手工艺品，工艺独特",
     detailDescription:
       "东阳花边是浙江省东阳市的传统手工艺品，以其精美的工艺和独特的风格著称。",
-    image: "@/assets/images/culture/dongyang-lace.jpg",
+    image: "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E6%96%87%E5%8C%96/%E4%B8%9C%E9%98%B3%E8%8A%B1%E8%BE%B9.png",
     category: "heritage",
     rating: 4.5,
     reviews: 143,
@@ -248,7 +248,7 @@ export const culturalNotes: CulturalNote[] = [
     description: "流传广泛的民间传说和历史故事",
     detailDescription:
       "义乌民间故事是浙江省义乌市的传统文化，以其丰富的民间传说和历史故事著称。",
-    image: "@/assets/images/culture/yiwu-stories.jpg",
+    image: "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E6%96%87%E5%8C%96/%E4%B9%89%E4%B9%8C%E6%B0%91%E9%97%B4%E6%95%85%E4%BA%8B.png",
     category: "history",
     rating: 4.2,
     reviews: 87,
@@ -266,7 +266,7 @@ export const culturalNotes: CulturalNote[] = [
     description: "独特的民间艺术表演形式",
     detailDescription:
       "金华皮影戏是浙江省金华市的传统民间艺术表演形式，以其独特的表演风格和丰富的文化内涵著称。",
-    image: "@/assets/images/culture/shadow-puppetry.jpg",
+    image: "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E6%96%87%E5%8C%96/%E9%87%91%E5%8D%8E%E7%9A%AE%E5%BD%B1%E6%88%8F.png",
     category: "art",
     rating: 4.6,
     reviews: 134,
@@ -284,7 +284,7 @@ export const culturalNotes: CulturalNote[] = [
     description: "历史悠久的传统酿造工艺",
     detailDescription:
       "浦江醋文化是浙江省浦江县的传统酿造工艺，以其悠久的历史和独特的酿造技艺著称。",
-    image: "@/assets/images/culture/pujiang-vinegar.jpg",
+    image: "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E6%96%87%E5%8C%96/%E9%86%8B.png",
     category: "heritage",
     rating: 4.7,
     reviews: 178,
@@ -302,7 +302,7 @@ export const culturalNotes: CulturalNote[] = [
     description: "见证金华历史变迁的城市印记",
     detailDescription:
       "金华古城墙始建于南宋时期，是江南地区保存较为完整的古城墙之一，全长约6公里，体现了古代军事防御建筑的特点。",
-    image: "@/assets/images/culture/ancient-wall.jpg",
+    image: "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E6%96%87%E5%8C%96/%E9%87%91%E5%8D%8E%E5%8F%A4%E5%9F%8E%E5%A2%99.png",
     category: "history",
     rating: 4.9,
     reviews: 267,

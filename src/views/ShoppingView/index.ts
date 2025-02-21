@@ -1,8 +1,8 @@
 import ShoppingView from "./ShoppingView.vue";
 // 导入背景图片
 import Banner from "@/assets/images/shopping/banner.png";
-
 export { Banner };
+
 export default ShoppingView;
 export interface ShoppingItem {
   id: string;
@@ -29,7 +29,8 @@ export const shoppingItems: ShoppingItem[] = [
     title: "金华火腿礼盒",
     description:
       "精选3年以上陈化火腿，传统工艺制作，色泽红润，肉质细腻，营养丰富，送礼佳品。",
-    image: "@/assets/images/shopping/huotui-gift.jpg",
+    image:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E4%B9%B0/%E9%87%91%E5%8D%8E%E7%81%AB%E8%85%BF%E7%A4%BC%E7%9B%92/%E7%81%AB%E8%85%BF%E7%A4%BC%E7%9B%92-2.jpg",
     category: "local",
     rating: 4.8,
     reviews: 256,
@@ -42,7 +43,8 @@ export const shoppingItems: ShoppingItem[] = [
     title: "东阳木雕套装",
     description:
       "国家级非遗传承作品，纯手工雕刻，选用上等香樟木，古色古香，雕工精湛。",
-    image: "@/assets/images/shopping/mudiao.jpg",
+    image:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E4%B9%B0/%E4%B8%9C%E9%98%B3%E6%9C%A8%E9%9B%95/%E6%9C%A8%E9%9B%95-2.jpg",
     category: "craft",
     rating: 4.7,
     reviews: 128,
@@ -54,7 +56,8 @@ export const shoppingItems: ShoppingItem[] = [
     id: "3",
     title: "义乌小商品市场精选",
     description: "汇集全球小商品，包括饰品、文具、日用品等，一站式采购天堂。",
-    image: "@/assets/images/shopping/xiaoshangpin.jpg",
+    image:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E4%B9%B0/%E4%B9%89%E4%B9%8C%E5%B0%8F%E5%95%86%E5%93%81/%E5%95%86%E5%93%81-2.jpg",
     category: "market",
     rating: 4.5,
     reviews: 398,
@@ -66,7 +69,8 @@ export const shoppingItems: ShoppingItem[] = [
     id: "4",
     title: "兰溪红糖礼盒",
     description: "传统手工熬制，原料为本地甘蔗，无添加纯天然，营养丰富。",
-    image: "@/assets/images/shopping/hongtang.jpg",
+    image:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E4%B9%B0/%E5%85%B0%E6%BA%AA%E7%BA%A2%E7%B3%96/%E7%BA%A2%E7%B3%96.jpg",
     category: "local",
     rating: 4.6,
     reviews: 167,
@@ -78,7 +82,8 @@ export const shoppingItems: ShoppingItem[] = [
     id: "5",
     title: "横店影视道具集",
     description: "横店影视城特色道具，包括古装服饰、装饰品等，影视文化纪念品。",
-    image: "@/assets/images/shopping/yingshi-props.jpg",
+    image:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E4%B9%B0/%E6%A8%AA%E5%BA%97%E5%BD%B1%E8%A7%86%E9%81%93%E5%85%B7%E9%9B%86.png",
     category: "craft",
     rating: 4.3,
     reviews: 89,
@@ -90,7 +95,8 @@ export const shoppingItems: ShoppingItem[] = [
     id: "6",
     title: "婺州窑瓷器",
     description: "千年窑口传承，青瓷工艺精湛，釉色典雅，器型优美。",
-    image: "@/assets/images/shopping/ciqi.jpg",
+    image:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E4%B9%B0/%E5%A9%BA%E5%B7%9E%E7%93%B7%E5%99%A8.png",
     category: "craft",
     rating: 4.9,
     reviews: 156,
@@ -102,7 +108,8 @@ export const shoppingItems: ShoppingItem[] = [
     id: "7",
     title: "浦江水晶饰品",
     description: "采用优质水晶原料，工艺精细，璀璨夺目，时尚精美。",
-    image: "@/assets/images/shopping/shuijing.jpg",
+    image:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E4%B9%B0/%E6%B5%A6%E6%B1%9F%E6%B0%B4%E6%99%B6%E9%A5%B0%E5%93%81.png",
     category: "craft",
     rating: 4.6,
     reviews: 245,
@@ -114,7 +121,8 @@ export const shoppingItems: ShoppingItem[] = [
     id: "8",
     title: "武义养生茶叶",
     description: "武义高山有机茶，包括白茶、红茶、绿茶等，清香醇厚。",
-    image: "@/assets/images/shopping/chaye.jpg",
+    image:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E4%B9%B0/%E5%85%BB%E7%94%9F%E8%8C%B6.png",
     category: "local",
     rating: 4.7,
     reviews: 178,
@@ -126,7 +134,8 @@ export const shoppingItems: ShoppingItem[] = [
     id: "9",
     title: "义乌圣诞用品",
     description: "全球最大圣诞用品集散地，品种齐全，价格优惠。",
-    image: "@/assets/images/shopping/christmas.jpg",
+    image:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E4%B9%B0/%E4%B9%89%E4%B9%8C%E5%9C%A3%E8%AF%9E%E7%94%A8%E5%93%81.png",
     category: "market",
     rating: 4.4,
     reviews: 423,
@@ -138,7 +147,8 @@ export const shoppingItems: ShoppingItem[] = [
     id: "10",
     title: "东阳黄花梨家具",
     description: "采用优质黄花梨木材，传统榫卯工艺，做工精细，历久弥新。",
-    image: "@/assets/images/shopping/furniture.jpg",
+    image:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E4%B9%B0/%E4%B8%9C%E9%98%B3%E9%BB%84%E8%8A%B1%E6%A2%A8%E5%AE%B6%E5%85%B7.png",
     category: "craft",
     rating: 4.8,
     reviews: 92,
@@ -150,7 +160,8 @@ export const shoppingItems: ShoppingItem[] = [
     id: "11",
     title: "兰溪豆腐干",
     description: "采用非转基因黄豆，传统手工制作，口感细腻，营养丰富。",
-    image: "@/assets/images/shopping/tofu.jpg",
+    image:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E4%B9%B0/%E5%85%B0%E6%BA%AA%E8%B1%86%E8%85%90%E5%B9%B2.png",
     category: "local",
     rating: 4.5,
     reviews: 334,
@@ -162,7 +173,8 @@ export const shoppingItems: ShoppingItem[] = [
     id: "12",
     title: "义乌文具套装",
     description: "创意文具大集合，品质优良，款式新颖，适合学生办公。",
-    image: "@/assets/images/shopping/stationery.jpg",
+    image:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E4%B9%B0/%E4%B9%89%E4%B9%8C%E6%96%87%E5%85%B7%E5%A5%97%E8%A3%85.png",
     category: "market",
     rating: 4.3,
     reviews: 567,
@@ -174,7 +186,8 @@ export const shoppingItems: ShoppingItem[] = [
     id: "13",
     title: "永康五金工具",
     description: "专业五金工具套装，质量可靠，品种齐全，价格实惠。",
-    image: "@/assets/images/shopping/tools.jpg",
+    image:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E4%B9%B0/%E6%B0%B8%E5%BA%B7%E4%BA%94%E9%87%91%E5%B7%A5%E5%85%B7.png",
     category: "market",
     rating: 4.6,
     reviews: 289,
@@ -186,7 +199,8 @@ export const shoppingItems: ShoppingItem[] = [
     id: "14",
     title: "磐安山核桃油",
     description: "纯天然压榨，营养丰富，助力健康，送礼佳品。",
-    image: "@/assets/images/shopping/nutsoil.jpg",
+    image:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E4%B9%B0/%E7%A3%90%E5%AE%89%E5%B1%B1%E6%A0%B8%E6%A1%83%E6%B2%B9.png",
     category: "local",
     rating: 4.7,
     reviews: 145,
@@ -198,7 +212,8 @@ export const shoppingItems: ShoppingItem[] = [
     id: "15",
     title: "浦江珠宝首饰",
     description: "精选优质珠宝玉石，工艺精湛，款式时尚，绚丽多彩。",
-    image: "@/assets/images/shopping/jewelry.jpg",
+    image:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E4%B9%B0/%E6%B5%A6%E6%B1%9F%E7%8F%A0%E5%AE%9D%E9%A6%96%E9%A5%B0.png",
     category: "craft",
     rating: 4.8,
     reviews: 176,
@@ -210,7 +225,8 @@ export const shoppingItems: ShoppingItem[] = [
     id: "16",
     title: "义乌帽子专区",
     description: "各类时尚帽子，从运动到礼帽，应有尽有，四季可选。",
-    image: "@/assets/images/shopping/hats.jpg",
+    image:
+      "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E4%B9%B0/%E4%B9%89%E4%B9%8C%E5%B8%BD%E5%AD%90%E4%B8%93%E5%8C%BA.png",
     category: "market",
     rating: 4.4,
     reviews: 445,
