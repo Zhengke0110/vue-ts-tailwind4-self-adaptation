@@ -3,6 +3,8 @@ export default HomeView;
 
 import ImportHomeBanner from "@/assets/images/home/home-banner.png";
 export { ImportHomeBanner as HomeBanner };
+import Avatar from "@/assets/images/avatar.jpg";
+export { Avatar };
 interface Route {
   id: number;
   title: string;
@@ -248,7 +250,7 @@ const popularItems: PopularItem[] = [
       "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E6%96%87%E5%8C%96/%E9%87%91%E5%8D%8E%E7%81%AF%E4%BC%9A/%E7%81%AF%E4%BC%9A-1.jpg",
     title: "金华灯会",
     author: {
-      avatar: "/path-to-avatar.jpg",
+      avatar: Avatar,
       name: "兔子摄影",
     },
   },
@@ -258,7 +260,7 @@ const popularItems: PopularItem[] = [
     image:
       "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E6%96%87%E5%8C%96/%E9%87%91%E5%8D%8E%E7%81%AB%E8%85%BF%E6%96%87%E5%8C%96/%E7%81%AB%E8%85%BF%E6%96%87%E5%8C%96-1.jpg",
     author: {
-      avatar: "/path-to-avatar.jpg",
+      avatar: Avatar,
       name: "兔子摄影",
     },
   },
@@ -268,7 +270,7 @@ const popularItems: PopularItem[] = [
     image:
       "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E6%96%87%E5%8C%96/%E5%A9%BA%E5%89%A7%E8%A1%A8%E6%BC%94%E8%89%BA%E6%9C%AF/%E5%A9%BA%E5%89%A7-2.jpg",
     author: {
-      avatar: "/path-to-avatar.jpg",
+      avatar: Avatar,
       name: "兔子摄影",
     },
   },
@@ -278,7 +280,7 @@ const popularItems: PopularItem[] = [
     image:
       "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E6%96%87%E5%8C%96/%E9%87%91%E5%8D%8E%E5%8E%86%E5%8F%B2%E5%8F%A4%E8%BF%B9/%E4%B8%9C%E9%98%B3%E5%8D%A2%E5%AE%85.jpg",
     author: {
-      avatar: "/path-to-avatar.jpg",
+      avatar: Avatar,
       name: "兔子摄影",
     },
   },
@@ -288,7 +290,7 @@ const popularItems: PopularItem[] = [
     image:
       "https://33fei-1343409302.cos.ap-guangzhou.myqcloud.com/%E5%9B%BE/%E6%96%87%E5%8C%96/%E9%9D%9E%E7%89%A9%E8%B4%A8%E6%96%87%E5%8C%96%E9%81%97%E4%BA%A7/%E4%B8%9C%E9%98%B3%E6%9C%A8%E9%9B%95.jpg",
     author: {
-      avatar: "/path-to-avatar.jpg",
+      avatar: Avatar,
       name: "兔子摄影",
     },
   },
