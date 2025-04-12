@@ -7,6 +7,16 @@ const routes: RouteRecordRaw[] = [
     redirect: "/home",
   },
   {
+    path: "/login",
+    name: "login",
+    component: () => import("@/views/LoginView"),
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: () => import("@/views/RegisterView"),
+  },
+  {
     path: "/home",
     name: "home",
     component: () => import("@/views/HomeView"),
