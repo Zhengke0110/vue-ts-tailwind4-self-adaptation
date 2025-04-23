@@ -203,7 +203,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, defineComponent, h } from "vue";
+import { ref, onMounted, defineComponent, h, watch } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { deviceType } from "@/utils/flexible";
 import { getFoodById, getRelatedFoods } from "./index";
@@ -220,40 +220,60 @@ const loading = ref(true);
 const error = ref<string | null>(null);
 const foodId = ref(route.params.id as string);
 
+// 加载食品数据的函数
+const loadFoodData = async (id: string) => {
+  try {
+    loading.value = true;
+    foodId.value = id;
+    
+    // 获取食品数据
+    const foodData = getFoodById(id);
+
+    if (!foodData) {
+      // 食品不存在，设置为null
+      food.value = null;
+      return;
+    }
+
+    // 设置食品数据
+    food.value = foodData;
+
+    // 加载相关推荐
+    relatedFoods.value = getRelatedFoods(foodData, 3);
+
+    // 检查是否收藏
+    checkFavorite();
+    
+    // 滚动到页面顶部
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  } catch (err) {
+    error.value = "加载美食数据失败，请稍后重试";
+    console.error("Error loading food data:", err);
+  } finally {
+    loading.value = false;
+  }
+};
+
 // 在组件挂载时加载食品数据
 onMounted(async () => {
-    try {
-        // 模拟网络延迟
-        await new Promise(resolve => setTimeout(resolve, 500));
-
-        // 获取食品数据
-        const id = route.params.id as string;
-        foodId.value = id;
-        const foodData = getFoodById(id);
-
-        if (!foodData) {
-            // 食品不存在，设置为null
-            food.value = null;
-            loading.value = false;
-            return;
-        }
-
-        // 设置食品数据
-        food.value = foodData;
-
-        // 加载相关推荐
-        relatedFoods.value = getRelatedFoods(foodData, 3);
-
-        // 检查是否收藏
-        checkFavorite();
-
-    } catch (err) {
-        error.value = "加载美食数据失败，请稍后重试";
-        console.error("Error loading food data:", err);
-    } finally {
-        loading.value = false;
-    }
+  // 模拟网络延迟
+  await new Promise(resolve => setTimeout(resolve, 500));
+  
+  // 加载初始食品数据
+  const id = route.params.id as string;
+  await loadFoodData(id);
 });
+
+// 监听路由参数变化，当ID改变时重新加载数据
+watch(
+  () => route.params.id,
+  async (newId) => {
+    if (newId && newId !== foodId.value) {
+      await loadFoodData(newId as string);
+    }
+  }
+);
 
 // 分类标签转换
 const getCategoryLabel = (category: string) => {
