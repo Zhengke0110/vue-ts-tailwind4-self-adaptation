@@ -35,11 +35,19 @@ const routes: RouteRecordRaw[] = [
     component: () => import("@/views/RouteDetailView"),
   },
   {
-    path: "/food",
-    name: "food",
+    path: "/foods",
+    name: "foods",
     component: () => import("@/views/FoodView"),
     meta: {
       title: "美食",
+    },
+  },
+  {
+    path: "/food/:id",
+    name: "food",
+    component: () => import("@/views/FoodDetailView"),
+    meta: {
+      title: "美食详情",
     },
   },
   {
