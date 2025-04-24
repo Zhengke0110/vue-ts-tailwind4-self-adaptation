@@ -115,6 +115,14 @@ const routes: RouteRecordRaw[] = [
     },
   },
   {
+    path: "/admin",
+    name: "admin",
+    component: () => import("@/views/AdminView"),
+    meta: {
+      title: "管理中心",
+    },
+  },
+  {
     path: "/:pathMatch(.*)*",
     name: "not-found",
     component: () => import("@/views/Error.vue"),
