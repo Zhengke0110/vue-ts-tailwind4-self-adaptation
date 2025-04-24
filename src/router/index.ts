@@ -107,6 +107,14 @@ const routes: RouteRecordRaw[] = [
     },
   },
   {
+    path: "/user",
+    name: "user",
+    component: () => import("@/views/UserView"),
+    meta: {
+      title: "用户中心",
+    },
+  },
+  {
     path: "/:pathMatch(.*)*",
     name: "not-found",
     component: () => import("@/views/Error.vue"),
